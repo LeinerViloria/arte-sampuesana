@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectHeader from "../ProjectHeader/ProjectHeader";
-import Layout, { Content, Header } from "antd/es/layout/layout";
+import Layout, { Content } from "antd/es/layout/layout";
 import { Col, Row } from "antd";
 
 
@@ -10,9 +10,7 @@ function MainLayout() {
             <Layout style={{ minHeight: '100vh' }}>
                 <Row>
                     <Col span={24}>
-                        <Header className="site-layout-background" style={{ padding: 0 }}>
-                            <ProjectHeader />
-                        </Header>
+                        <ProjectHeader />
                     </Col>
                 </Row>
                 <Row>
