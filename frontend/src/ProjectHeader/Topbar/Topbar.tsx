@@ -1,4 +1,3 @@
-import { Col, Row } from 'antd';
 import Search from 'antd/es/input/Search';
 import React, { Component } from 'react';
 
@@ -10,7 +9,7 @@ const InfoTitle = "Servicio personalizado";
 const InfoNumber = "+012 345 6789";
 
 const Items = Tags.map((item) => 
-    <a className="text-body-header mr-3" href="">{item}</a>
+    <span className="text-body-header mr-3">{item}</span>
 );
 
 export class Topbar extends Component {
@@ -36,14 +35,14 @@ export class Topbar extends Component {
                                     </div>
                                 </div>
                                 <div className="d-inline-flex align-items-center d-block d-lg-none">
-                                    <a href="" className="btn px-0 ml-2">
+                                    <span className="btn px-0 ml-2">
                                         <i className="fas fa-heart text-dark"></i>
                                         <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
-                                    </a>
-                                    <a href="" className="btn px-0 ml-2">
+                                    </span>
+                                    <span className="btn px-0 ml-2">
                                         <i className="fas fa-shopping-cart text-dark"></i>
                                         <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -51,14 +50,14 @@ export class Topbar extends Component {
                 </div>
                 <div className="align-items-center bg-light px-xl-5 d-none d-lg-flex">
                     <div className="col-lg-4">
-                        <a href="" className="text-decoration-none">
+                        <span className="text-decoration-none">
                             <span className="h4 text-uppercase text-primary bg-dark px-2">
                                 Arte
                             </span>
                             <span className="h4 text-uppercase text-dark bg-primary px-2 ml-n1">
                                 Sampuesana
                             </span>
-                        </a>
+                        </span>
                     </div>
                     <div className="col-lg-4 col-6 text-left">
                         <Search placeholder="Busca productos" className='w-100' allowClear style={{ width: 200 }} />

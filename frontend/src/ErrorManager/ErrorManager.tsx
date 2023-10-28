@@ -1,8 +1,7 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import React from "react";
 
 export default function ErrorManager() {
-  const navigate = useNavigate();
   const location = useLocation();
   const error = location.state as {
     statusText: string;

@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import { DownOutlined } from '@ant-design/icons';
-import { useState } from "react";
 import { Dropdown, MenuProps, Space } from 'antd';
-
-// interface NavMenuProps {}
-
-// interface NavMenuState {
-//   expanded: boolean;
-// }
 
 const items: MenuProps['items'] = [
     {
@@ -48,12 +41,12 @@ class NavMenu extends Component {
                 <Dropdown
                     menu={{items}}
                 >
-                    <a onClick={(e) => e.preventDefault()}>
+                    <span onClick={(e) => e.preventDefault()}>
                         <Space>
                             Categorias
                             <DownOutlined />
                         </Space>
-                    </a>
+                    </span>
                 </Dropdown>
             </React.Fragment>
         );
