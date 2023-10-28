@@ -19,7 +19,9 @@ class NavBar extends Component {
                             <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                                 <span className="navbar-toggler-icon"></span>
                             </button>
-                            <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse" style={{
+                                height: "40px"
+                            }}>
                                 <div className="navbar-nav mr-auto py-0">
                                     <a href="index.html" className="nav-item nav-link active">Home</a>
                                     <a href="shop.html" className="nav-item nav-link">Shop</a>
