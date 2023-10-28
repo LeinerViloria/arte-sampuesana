@@ -2,6 +2,14 @@ import { Col, Row } from 'antd';
 import Search from 'antd/es/input/Search';
 import React, { Component } from 'react';
 
+const Tags = [
+    "Sobre nosotros", "Contactanos", "Pide ayuda"
+];
+
+const Items = Tags.map((item) => 
+    <a className="text-body-header mr-3" href="">{item}</a>
+);
+
 export class Topbar extends Component {
     render() {
         return (
@@ -9,49 +17,31 @@ export class Topbar extends Component {
                 <div className="row px-xl-5 w-100">
                     <div className="col-lg-6 d-none d-lg-block">
                         <div className="d-inline-flex align-items-center h-100 w-100">
-                            <a className="text-body-header mr-3" href="">About</a>
-                            <a className="text-body-header mr-3" href="">Contact</a>
-                            <a className="text-body-header mr-3" href="">Help</a>
+                            {Items}
                         </div>
                     </div>
                     <div className='col-lg-6 text-center text-lg-right'>
-                        <div className="col-lg-6 text-center text-lg-right">
-                        <div className="d-inline-flex align-items-center">
-                            <div className="btn-group">
-                                <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                                <div className="dropdown-menu dropdown-menu-right">
-                                    <button className="dropdown-item" type="button">Sign in</button>
-                                    <button className="dropdown-item" type="button">Sign up</button>
+                        <div className="col-lg-12 text-center text-lg-right">
+                            <div className="d-inline-flex align-items-center">
+                                <div className="btn-group">
+                                    <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi cuenta</button>
+                                    <div className="dropdown-menu dropdown-menu-right">
+                                        <button className="dropdown-item" type="button">Iniciar sesión</button>
+                                        <button className="dropdown-item" type="button">Registrarse</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="btn-group mx-2">
-                                <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
-                                <div className="dropdown-menu dropdown-menu-right">
-                                    <button className="dropdown-item" type="button">EUR</button>
-                                    <button className="dropdown-item" type="button">GBP</button>
-                                    <button className="dropdown-item" type="button">CAD</button>
-                                </div>
-                            </div>
-                            <div className="btn-group">
-                                <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
-                                <div className="dropdown-menu dropdown-menu-right">
-                                    <button className="dropdown-item" type="button">FR</button>
-                                    <button className="dropdown-item" type="button">AR</button>
-                                    <button className="dropdown-item" type="button">RU</button>
-                                </div>
+                            <div className="d-inline-flex align-items-center d-block d-lg-none">
+                                <a href="" className="btn px-0 ml-2">
+                                    <i className="fas fa-heart text-dark"></i>
+                                    <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
+                                </a>
+                                <a href="" className="btn px-0 ml-2">
+                                    <i className="fas fa-shopping-cart text-dark"></i>
+                                    <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
+                                </a>
                             </div>
                         </div>
-                        <div className="d-inline-flex align-items-center d-block d-lg-none">
-                            <a href="" className="btn px-0 ml-2">
-                                <i className="fas fa-heart text-dark"></i>
-                                <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
-                            </a>
-                            <a href="" className="btn px-0 ml-2">
-                                <i className="fas fa-shopping-cart text-dark"></i>
-                                <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
-                            </a>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 {/* <div className="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
