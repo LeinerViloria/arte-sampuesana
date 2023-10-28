@@ -1,5 +1,7 @@
+import { Dropdown, MenuProps, Space } from 'antd';
 import Search from 'antd/es/input/Search';
 import React, { Component } from 'react';
+import { DownOutlined } from '@ant-design/icons';
 
 const Tags = [
     "Sobre nosotros", "Contactanos", "Pide ayuda"
@@ -11,6 +13,17 @@ const InfoNumber = "+012 345 6789";
 const Items = Tags.map((item) => 
     <span className="text-body-header mr-3">{item}</span>
 );
+
+const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Iniciar sesión'
+    },
+    {
+      key: '2',
+      label: 'Registrarse'
+    }
+  ];
 
 export class Topbar extends Component {
     render() {
@@ -27,11 +40,16 @@ export class Topbar extends Component {
                             <div className="col-lg-12 text-center text-lg-right">
                                 <div className="d-inline-flex align-items-center">
                                     <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi cuenta</button>
-                                        <div className="dropdown-menu dropdown-menu-right">
-                                            <button className="dropdown-item" type="button">Iniciar sesión</button>
-                                            <button className="dropdown-item" type="button">Registrarse</button>
-                                        </div>
+                                        <Dropdown
+                                            menu={{items}}
+                                        >
+                                            <span onClick={(e) => e.preventDefault()}>
+                                                <Space>
+                                                    Mi cuenta
+                                                    <DownOutlined />
+                                                </Space>
+                                            </span>
+                                        </Dropdown>
                                     </div>
                                 </div>
                                 <div className="d-inline-flex align-items-center d-block d-lg-none">
