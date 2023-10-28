@@ -16,10 +16,9 @@ class NavBar extends Component {
                                 <span className="h4 text-uppercase text-dark bg-light px-2">Arte</span>
                                 <span className="h4 text-uppercase text-light bg-primary px-2 ml-n1">Sampuesana</span>
                             </span>
-                            {/* <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                                <span className="navbar-toggler-icon"></span>
-                            </button> */}
-                            {/* <NavBar /> */}
+                            <span className="navbar-toggler">
+                                <NavMenu />
+                            </span>
                             <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse" style={{
                                 height: "40px"
                             }}>
