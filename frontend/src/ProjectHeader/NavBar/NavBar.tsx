@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NavBar.tsx.css';
 import NavMenu from './Menu/NavMenu';
+import { HeartTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
 
 class NavBar extends Component {
     render() {
@@ -11,7 +12,7 @@ class NavBar extends Component {
                         <NavMenu />
                     </div>
                     <div className="col-lg-9">
-                        <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                        <nav className="navbar navbar-expand-lg navbar-dark py-3 py-lg-0 px-0">
                             <span className="text-decoration-none d-block d-lg-none">
                                 <span className="h4 text-uppercase text-dark bg-light px-2">Arte</span>
                                 <span className="h4 text-uppercase text-light bg-primary px-2 ml-n1">Sampuesana</span>
@@ -23,31 +24,22 @@ class NavBar extends Component {
                                 height: "40px"
                             }}>
                                 <div className="navbar-nav mr-auto py-0">
-                                    <a href="index.html" className="nav-item nav-link active">Home</a>
-                                    <a href="shop.html" className="nav-item nav-link">Shop</a>
-                                    <a href="detail.html" className="nav-item nav-link">Shop Detail</a>
-                                    <div className="nav-item dropdown">
-                                        <span className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></span>
-                                        <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                            <span className="dropdown-item">Shopping Cart</span>
-                                            <span className="dropdown-item">Checkout</span>
-                                        </div>
-                                    </div>
-                                    <span className="nav-item nav-link">Contact</span>
+                                    <a href="/" className="nav-item nav-link active">Home</a>
+                                    <a href="/artesano" className="nav-item nav-link">Mi taller</a>
                                 </div>
 
                                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                                     <span className="btn px-0">
-                                        <i className="fas fa-heart text-primary"></i>
+                                        <HeartTwoTone />
                                         <span className="badge text-secondary border border-secondary rounded-circle" style={{
                                             paddingBottom: "2px"
-                                        }}>0</span>
+                                        }}>4</span>
                                     </span>
                                     <span className="btn px-0 ml-3">
-                                        <i className="fas fa-shopping-cart text-primary"></i>
+                                        <ShoppingCartOutlined />
                                         <span className="badge text-secondary border border-secondary rounded-circle" style={{
                                             paddingBottom: "2px"
-                                        }}>0</span>
+                                        }}>5</span>
                                     </span>
                                 </div>
                             </div>

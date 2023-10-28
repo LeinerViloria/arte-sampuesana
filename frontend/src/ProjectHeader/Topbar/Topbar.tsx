@@ -1,7 +1,9 @@
 import { Dropdown, MenuProps, Space } from 'antd';
 import Search from 'antd/es/input/Search';
 import React, { Component } from 'react';
-import { DownOutlined } from '@ant-design/icons';
+import {
+    DownOutlined, HeartTwoTone, ShoppingCartOutlined
+} from '@ant-design/icons';
 
 const Tags = [
     "Sobre nosotros", "Contactanos", "Pide ayuda"
@@ -54,12 +56,12 @@ export class Topbar extends Component {
                                 </div>
                                 <div className="d-inline-flex align-items-center d-block d-lg-none">
                                     <span className="btn px-0 ml-2">
-                                        <i className="fas fa-heart text-dark"></i>
-                                        <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
+                                        <HeartTwoTone />
+                                        <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">4</span>
                                     </span>
                                     <span className="btn px-0 ml-2">
-                                        <i className="fas fa-shopping-cart text-dark"></i>
-                                        <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">0</span>
+                                        <ShoppingCartOutlined />
+                                        <span className="badge text-dark border border-dark rounded-circle padding_bottom_2px">5</span>
                                     </span>
                                 </div>
                             </div>
