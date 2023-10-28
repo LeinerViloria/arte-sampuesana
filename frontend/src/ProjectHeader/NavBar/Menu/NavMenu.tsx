@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { useState } from "react";
 
-class NavMenu extends Component {
-    constructor(props: any) {
+interface NavMenuProps {}
+
+interface NavMenuState {
+  expanded: boolean;
+}
+
+class NavMenu extends Component<NavMenuProps, NavMenuState> {
+    constructor(props: NavMenuProps) {
         super(props);
         this.state = {
             expanded: false
@@ -11,7 +17,7 @@ class NavMenu extends Component {
     }
 
     toggleIsExpanded = () => {
-        
+        this.setState({ expanded: !this.state.expanded });
     };
     render() {
         return (
@@ -20,7 +26,7 @@ class NavMenu extends Component {
                     height: "65px", padding: "0 30px"
                 }}>
                     <h6 className="text-dark m-0"><i className="fa fa-bars mr-2"></i>Categorias</h6>
-                    {/* {this.state.expanded ? <CaretUpOutlined /> : <CaretDownOutlined />} */}
+                    {this.state.expanded ? <CaretUpOutlined /> : <CaretDownOutlined />}
                 </a>
                 <nav className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style={{
                     width: "calc(100% - 30px)",
