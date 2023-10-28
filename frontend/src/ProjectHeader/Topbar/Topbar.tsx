@@ -6,6 +6,9 @@ const Tags = [
     "Sobre nosotros", "Contactanos", "Pide ayuda"
 ];
 
+const InfoTitle = "Servicio personalizado";
+const InfoNumber = "+012 345 6789";
+
 const Items = Tags.map((item) => 
     <a className="text-body-header mr-3" href="">{item}</a>
 );
@@ -58,11 +61,11 @@ export class Topbar extends Component {
                         </a>
                     </div>
                     <div className="col-lg-4 col-6 text-left">
-                        <Search placeholder="Búsqueda" className='w-100' allowClear style={{ width: 200 }} />
+                        <Search placeholder="Busca productos" className='w-100' allowClear style={{ width: 200 }} />
                     </div>
                     <div className="col-lg-4 col-6 text-right">
-                        <p className="m-0">Servicio personalizado</p>
-                        <h5 className="m-0">+012 345 6789</h5>
+                        <p className="m-0">{InfoTitle}</p>
+                        <h5 className="m-0">{InfoNumber}</h5>
                     </div>
                 </div>
             </React.Fragment>
