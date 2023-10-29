@@ -1,4 +1,4 @@
-import { Col, Layout, Row } from 'antd';
+import { Card, Col, Row } from 'antd';
 import React from 'react';
 
 function CraftsmenHome()
@@ -6,14 +6,20 @@ function CraftsmenHome()
     return (
         <Row>
             <Col span={16}>
-                <p>Hola</p>
+                <Card>
+                    <p>Hola</p>
+                </Card>
             </Col>
             <Col span={8}>
                 <Row>
-                    <p>Hola</p>
+                    <Card>
+                        <p>Hola</p>
+                    </Card>
                 </Row>
                 <Row>
-                    <p>Hola</p>
+                    <Card>
+                        <p>Hola</p>
+                    </Card>
                 </Row>
             </Col>
         </Row>
