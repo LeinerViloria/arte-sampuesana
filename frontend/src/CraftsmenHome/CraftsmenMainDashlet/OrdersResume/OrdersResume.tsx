@@ -1,4 +1,5 @@
 import { Card } from 'antd';
+import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
 
 class Order
@@ -17,15 +18,36 @@ const orders: Order[] = [
     { id: 5, productName: "Product E", amount: 7, date: new Date("2023-10-25") }
 ];
 
-class OrdersResume extends Component {
+interface OrdersResumeProp{
+    cssClass: any;
+    
+}
+
+interface OrdersResumeState{
+    cssClass?: string;
+}
+
+class OrdersResume extends Component<OrdersResumeProp, OrdersResumeState>
+{
+    constructor(props: OrdersResumeProp) {
+        super(props);
+        this.state = {
+            cssClass: props.cssClass
+        }
+    }
     render() {
         return (
             <React.Fragment>
-                {orders.map((order, index) => (
-                    <Card className='mb-2'>
+                <div className='d-flex flex-column align-items-center'>
+                    <Title level={4}>Notificaciones de pedidos</Title>
+                    <div className={this.state.cssClass}>
+                        {orders.map((order, index) => (
+                            <Card className='mb-2'>
 
-                    </Card>
-                ))}
+                            </Card>
+                        ))}
+                    </div>
+                </div>
             </React.Fragment>
         );
     }

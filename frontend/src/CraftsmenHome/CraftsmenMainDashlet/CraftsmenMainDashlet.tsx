@@ -59,12 +59,7 @@ class CraftsmenMainDashlet extends Component<CraftsmenMainDashletProp, Craftsmen
                     </React.Fragment>
 
                     <React.Fragment>
-                        <div className='d-flex flex-column align-items-center'>
-                            <Title level={4}>Notificaciones de pedidos</Title>
-                            <div className='w-50'>
-                                <OrdersResume />
-                            </div>
-                        </div>
+                        <OrdersResume cssClass={"w-50"} />
                     </React.Fragment>
                 </Carousel>
             </React.Fragment>
