@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Card, Descriptions, DescriptionsProps } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
 import './OrdersResume.tsx.css';
@@ -8,7 +8,7 @@ class Order
     id?: number;
     productName?: string;
     amount?: number;
-    date?: Date
+    date?: Date;
 }
 
 const orders: Order[] = [
@@ -36,6 +36,29 @@ class OrdersResume extends Component<OrdersResumeProp, OrdersResumeState>
             cssClass: props.cssClass
         }
     }
+
+    getItems(item: Order)
+    {
+        return [
+            {
+              key: '1',
+              label: 'Producto',
+              children: item.productName,
+            },
+            {
+              key: '2',
+              label: 'Cantidad',
+              children: `${item.amount} unidades`,
+            },
+            {
+              key: '3',
+              label: 'Fecha',
+              children: `${item.date?.getFullYear()}/
+              ${item.date?.getMonth()}/
+              ${item.date?.getDate()}`,
+            }
+          ];
+    }
     render() {
         return (
             <React.Fragment>
@@ -44,14 +67,11 @@ class OrdersResume extends Component<OrdersResumeProp, OrdersResumeState>
                     <div className={this.state.cssClass}>
                         {orders.map((order, index) => (
                             <Card className='mb-2 order-card'>
-                                <div className="notification-title">Pedido #{order.id}</div>
-                                <div className="notification-details">Producto: {order.productName}</div>
-                                <div className="notification-details">Cantidad: {order.amount} unidades</div>
-                                <div className="notification-details">
-                                    Fecha: {order.date?.getFullYear()}/
-                                    {order.date?.getMonth()}/
-                                    {order.date?.getDate()}
-                                </div>
+                                <Descriptions
+                                    title={`Pedido #${order.id}`}
+                                    items={this.getItems(order)}
+                                    column={1}
+                                />
                             </Card>
                         ))}
                     </div>

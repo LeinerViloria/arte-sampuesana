@@ -1,13 +1,3 @@
-.notification-title {
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.notification-details {
-    font-size: 14px;
-    color: #555;
-}
-
 .order-card .ant-card-body
 {
     text-align: start !important;
