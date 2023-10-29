@@ -1,6 +1,7 @@
 import { Card } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
+import './OrdersResume.tsx.css';
 
 class Order
 {
@@ -42,8 +43,11 @@ class OrdersResume extends Component<OrdersResumeProp, OrdersResumeState>
                     <Title level={4}>Notificaciones de pedidos</Title>
                     <div className={this.state.cssClass}>
                         {orders.map((order, index) => (
-                            <Card className='mb-2'>
-
+                            <Card className='mb-2 order-card'>
+                                <div className="notification-title">Pedido #001</div>
+                                <div className="notification-details">Producto: Product A</div>
+                                <div className="notification-details">Cantidad: 3 unidades</div>
+                                <div className="notification-details">Fecha: 28 de Octubre, 2023</div>
                             </Card>
                         ))}
                     </div>
