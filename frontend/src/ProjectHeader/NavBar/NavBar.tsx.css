@@ -1,4 +1,4 @@
 .nav-background
 {
-    background: #3d464d;
+    background: var(--primary-background);
 }

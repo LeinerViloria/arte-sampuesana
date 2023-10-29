@@ -1,6 +1,7 @@
 import { Card, Col, Row } from 'antd';
 import React from 'react';
 import './CraftsmenHome.tsx.css';
+import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
 
 function CraftsmenHome()
 {
@@ -8,7 +9,7 @@ function CraftsmenHome()
         <Row gutter={[24, 16]}>
             <Col span={16} >
                 <Card className='h-100'>
-                    <p>Hola</p>
+                    <CraftsmenMainDashlet />
                 </Card>
             </Col>
             <Col span={8}>

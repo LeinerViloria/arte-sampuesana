@@ -1,0 +1,14 @@
+.ant-carousel, .ant-carousel .slick-slider, .slick-list
+{
+    height: 100%;
+}
+
+.slick-dots li
+{
+    background: var(--primary-background);
+}
+
+:where(.css-dev-only-do-not-override-amq5gd).ant-carousel .slick-dots li.slick-active button
+{
+    background: var(--secondary-background);
+}

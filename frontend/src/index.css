@@ -20,6 +20,8 @@ code {
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
  :root {
+  --primary-background: #3d464d;
+  --secondary-background: #1c6fe1;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
