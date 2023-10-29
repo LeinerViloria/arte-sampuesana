@@ -1,0 +1,9 @@
+:where(.css-dev-only-do-not-override-amq5gd).ant-card .ant-card-body
+{
+    padding: 12px;
+}
+
+.ant-card-body
+{
+    height: 100%;
+}
