@@ -6,9 +6,9 @@ import { HeartTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
 class NavBar extends Component {
     render() {
         return (
-            <div className="container-fluid nav-background mb-30">
+            <div className="container-fluid nav-background mb-1">
                 <div className="row px-xl-5">
-                    <div className="col-lg-3 d-none d-lg-block">
+                    <div className="col-lg-3 d-none d-lg-block" style={{color: 'white'}}>
                         <NavMenu />
                     </div>
                     <div className="col-lg-9">
@@ -24,7 +24,7 @@ class NavBar extends Component {
                                 height: "40px"
                             }}>
                                 <div className="navbar-nav mr-auto py-0">
-                                    <a href="/" className="nav-item nav-link active">Home</a>
+                                    <a href="/" className="nav-item nav-link">Home</a>
                                     <a href="/artesano" className="nav-item nav-link">Mi taller</a>
                                 </div>
 

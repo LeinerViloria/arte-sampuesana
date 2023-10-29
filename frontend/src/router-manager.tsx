@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home/Home";
-import Ejemplo from "./Ejemplo/Ejemplo";
+import CraftsmenHome from "./CraftsmenHome/CraftsmenHome";
 import ErrorManager from './ErrorManager/ErrorManager';
 
 const router = createBrowserRouter([
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     },
     {
       path: "/artesano",
-      element: <Ejemplo />,
+      element: <CraftsmenHome />,
       errorElement: <ErrorManager />
     },
 ]);

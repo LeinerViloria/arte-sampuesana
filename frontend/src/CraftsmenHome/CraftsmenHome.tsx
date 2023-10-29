@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Ejemplo()
+function CraftsmenHome()
 {
     return (
         <p>Ejemplo</p>
     );
 }
 
-export default Ejemplo;
+export default CraftsmenHome;
