@@ -7,6 +7,7 @@ import {
 import WorkspaceStatistic from './WorkspaceStatistic/WorkspaceStatistic';
 
 import { Typography } from 'antd';
+import OrdersResume from './OrdersResume/OrdersResume';
 
 const { Title } = Typography;
 
@@ -58,7 +59,12 @@ class CraftsmenMainDashlet extends Component<CraftsmenMainDashletProp, Craftsmen
                     </React.Fragment>
 
                     <React.Fragment>
-                        3
+                        <div className='d-flex flex-column align-items-center'>
+                            <Title level={4}>Notificaciones de pedidos</Title>
+                            <div className='w-50'>
+                                <OrdersResume />
+                            </div>
+                        </div>
                     </React.Fragment>
                 </Carousel>
             </React.Fragment>

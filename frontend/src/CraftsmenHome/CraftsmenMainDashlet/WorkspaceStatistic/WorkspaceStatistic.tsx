@@ -67,14 +67,14 @@ export default function WorkspaceStatistic() {
       />
       <Area
         type="monotone"
-        dataKey="Sombreros"    // Cambia los nombres de los productos
+        dataKey="Sombreros"
         stackId="1"
         stroke="#82ca9d"
         fill="#82ca9d"
       />
       <Area
         type="monotone"
-        dataKey="OtroProducto"  // Cambia los nombres de los productos
+        dataKey="OtroProducto"
         stackId="1"
         stroke="#ffc658"
         fill="#ffc658"
