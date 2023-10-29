@@ -12,3 +12,8 @@
 {
     background: var(--secondary-background);
 }
+
+:where(.css-dev-only-do-not-override-amq5gd).ant-carousel .slick-dots-bottom
+{
+    position: relative;
+}
