@@ -10,7 +10,7 @@ class PersonalInformationDashlet extends Component {
                     <Space wrap align={'center'}>
                         <Title level={5} className='mr-2'>
                             <a href='/artesano/basicInformation'>
-                                Información personal y cultural
+                                Administrar información personal
                             </a>
                         </Title>
                         <Progress type="circle" percent={75} />
