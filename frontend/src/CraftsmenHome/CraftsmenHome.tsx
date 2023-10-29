@@ -4,6 +4,7 @@ import './CraftsmenHome.tsx.css';
 import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
 import PersonalInformationDashlet from './PersonalInformationDashlet/PersonalInformationDashlet';
 import Title from 'antd/es/typography/Title';
+import ProductsDashlet from './ProductsDashlet/ProductsDashlet';
 
 function CraftsmenHome()
 {
@@ -52,9 +53,7 @@ function CraftsmenHome()
             </Row>
             <Row className='mt-3'>
                 <Card className='w-100'>
-                    <Title level={4}>
-                        Mis productos
-                    </Title>
+                    <ProductsDashlet />
                 </Card>
             </Row>
         </React.Fragment>
