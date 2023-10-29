@@ -23,7 +23,7 @@ class CraftsmenMainDashlet extends Component {
                     </React.Fragment>
 
                     <React.Fragment>
-                        <Title level={3}> Los 3 articulos más vendidos en los ultimos 5 meses </Title>
+                        <Title level={4}> Los 3 articulos más vendidos en los ultimos 5 meses </Title>
                         <div className='d-flex justify-content-center mb-3'>
                             <WorkspaceStatistic />
                         </div>
