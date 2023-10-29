@@ -4,6 +4,7 @@ import './CraftsmenMainDashlet.tsx.css';
 import {
     EyeTwoTone
 } from '@ant-design/icons';
+import WorkspaceStatistic from './WorkspaceStatistic/WorkspaceStatistic';
 
 class CraftsmenMainDashlet extends Component {
     render() {
@@ -17,9 +18,7 @@ class CraftsmenMainDashlet extends Component {
                         </Flex>
                     </React.Fragment>
 
-                    <React.Fragment>
-                        2
-                    </React.Fragment>
+                    <WorkspaceStatistic />
 
                     <React.Fragment>
                         3
