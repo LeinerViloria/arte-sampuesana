@@ -1,4 +1,4 @@
-import { Carousel, Flex, Statistic } from 'antd';
+import { Carousel, Flex, Statistic, Switch } from 'antd';
 import React, { Component } from 'react';
 import './CraftsmenMainDashlet.tsx.css';
 import {
@@ -10,11 +10,39 @@ import { Typography } from 'antd';
 
 const { Title } = Typography;
 
-class CraftsmenMainDashlet extends Component {
+interface CraftsmenMainDashletProp{
+    
+}
+
+interface CraftsmenMainDashletState{
+    CanAutoplay: boolean;
+}
+
+class CraftsmenMainDashlet extends Component<CraftsmenMainDashletProp, CraftsmenMainDashletState>
+{
+    constructor(props: CraftsmenMainDashletProp)
+    {
+        super(props);
+        this.state = {
+            CanAutoplay: true
+        };
+    }
+
+    onChange = (checked: boolean) => {
+        this.setState({CanAutoplay: checked});
+    };
+
     render() {
         return (
             <React.Fragment>
-                <Carousel dotPosition='bottom' autoplay={true}>
+                <div style={{
+                    position: 'absolute',
+                    right:'10px',
+                    zIndex: '3'
+                }}>
+                    <Switch defaultChecked title='Autonavegar' onChange={this.onChange} />
+                </div>
+                <Carousel dotPosition='bottom' autoplay={this.state.CanAutoplay}>
                     <React.Fragment>
                         <Flex gap="middle" vertical={false} justify='center' align='center'>
                             <Statistic title="Visitas" value={1128} prefix={<EyeTwoTone />} />
