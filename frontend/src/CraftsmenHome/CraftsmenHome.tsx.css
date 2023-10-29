@@ -7,3 +7,8 @@
 {
     height: 100%;
 }
+
+.max_height_card
+{
+    max-height: 300px!important;
+}
