@@ -1,4 +1,4 @@
-import { Card, Descriptions, DescriptionsProps } from 'antd';
+import { Card, Descriptions } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
 import './OrdersResume.tsx.css';
@@ -21,7 +21,6 @@ const orders: Order[] = [
 
 interface OrdersResumeProp{
     cssClass: any;
-    
 }
 
 interface OrdersResumeState{

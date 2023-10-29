@@ -2,6 +2,7 @@ import { Card, Col, Row } from 'antd';
 import React from 'react';
 import './CraftsmenHome.tsx.css';
 import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
+import PersonalInformationDashlet from './PersonalInformationDashlet/PersonalInformationDashlet';
 
 function CraftsmenHome()
 {
@@ -15,7 +16,7 @@ function CraftsmenHome()
             <Col span={8} className='max_height_card'>
                 <Row>
                     <Card className='w-100'>
-                        <p>Hola</p>
+                        <PersonalInformationDashlet />
                     </Card>
                 </Row>
                 <Row>
