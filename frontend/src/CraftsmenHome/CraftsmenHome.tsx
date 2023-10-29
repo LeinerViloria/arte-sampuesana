@@ -8,7 +8,7 @@ function CraftsmenHome()
     return (
         <Row gutter={[24, 16]}>
             <Col span={16} >
-                <Card className='h-100'>
+                <Card className='h-100' bordered={false}>
                     <CraftsmenMainDashlet />
                 </Card>
             </Col>
