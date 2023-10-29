@@ -44,10 +44,14 @@ class OrdersResume extends Component<OrdersResumeProp, OrdersResumeState>
                     <div className={this.state.cssClass}>
                         {orders.map((order, index) => (
                             <Card className='mb-2 order-card'>
-                                <div className="notification-title">Pedido #001</div>
-                                <div className="notification-details">Producto: Product A</div>
-                                <div className="notification-details">Cantidad: 3 unidades</div>
-                                <div className="notification-details">Fecha: 28 de Octubre, 2023</div>
+                                <div className="notification-title">Pedido #{order.id}</div>
+                                <div className="notification-details">Producto: {order.productName}</div>
+                                <div className="notification-details">Cantidad: {order.amount} unidades</div>
+                                <div className="notification-details">
+                                    Fecha: {order.date?.getFullYear()}/
+                                    {order.date?.getMonth()}/
+                                    {order.date?.getDate()}
+                                </div>
                             </Card>
                         ))}
                     </div>
