@@ -47,43 +47,43 @@ const products: Product[] = [
     {
         "name": "Producto 6",
         "price": 76000,
-        "mark": 6,
+        "mark": 1,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 7",
         "price": 32000,
-        "mark": 7,
+        "mark": 2,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 8",
         "price": 69000,
-        "mark": 8,
+        "mark": 3,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 9",
         "price": 42000,
-        "mark": 9,
+        "mark": 4,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 10",
         "price": 57000,
-        "mark": 10,
+        "mark": 5,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 11",
         "price": 32000,
-        "mark": 11,
+        "mark": 1,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     },
     {
         "name": "Producto 12",
         "price": 80000,
-        "mark": 12,
+        "mark": 2,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     }
 ];
@@ -108,7 +108,9 @@ class ProductsDashlet extends Component {
                                 </Title>
                                 <p>${product.price}</p>
                                 <div className='d-flex w-100 justify-content-center'>
-                                    <StarTwoTone />
+                                    {Array.from({length: product.mark as number}, (_, i) => (
+                                        <StarTwoTone key={i} />
+                                    ))}
                                 </div>
                             </Card>
                         </Col>
