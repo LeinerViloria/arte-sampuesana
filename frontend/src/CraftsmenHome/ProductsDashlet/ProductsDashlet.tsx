@@ -31,8 +31,63 @@ const products: Product[] = [
         "price": 58000,
         "mark": 3,
         "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 4",
+        "price": 22000,
+        "mark": 4,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 5",
+        "price": 45000,
+        "mark": 5,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 6",
+        "price": 76000,
+        "mark": 6,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 7",
+        "price": 32000,
+        "mark": 7,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 8",
+        "price": 69000,
+        "mark": 8,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 9",
+        "price": 42000,
+        "mark": 9,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 10",
+        "price": 57000,
+        "mark": 10,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 11",
+        "price": 32000,
+        "mark": 11,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 12",
+        "price": 80000,
+        "mark": 12,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
     }
 ];
+
 
 class ProductsDashlet extends Component {
     render() {
@@ -41,20 +96,24 @@ class ProductsDashlet extends Component {
                 <Title level={4}>
                     Mis productos
                 </Title>
-                <Card bordered={false} style={{
-                    width:"20%"
-                }}>
-                    <Image
-                        src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-                    />
-                    <Title level={5} className='mt-2'>
-                        Producto tal
-                    </Title>
-                    <p>$25000</p>
-                    <div className='d-flex w-100 justify-content-center'>
-                        <StarTwoTone />
-                    </div>
-                </Card>
+                <div className='d-flex w-100 mb-2'>
+                    {products.map((product, index) => (
+                        <Card bordered={false} style={{
+                            width:"20%"
+                        }}>
+                            <Image
+                                src={product.image}
+                            />
+                            <Title level={5} className='mt-2'>
+                                {product.name}
+                            </Title>
+                            <p>${product.price}</p>
+                            <div className='d-flex w-100 justify-content-center'>
+                                <StarTwoTone />
+                            </div>
+                        </Card>
+                    ))}
+                </div>
                 <Pagination showQuickJumper defaultCurrent={2} total={500}/>
             </React.Fragment>
         );
