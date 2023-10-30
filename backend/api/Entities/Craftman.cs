@@ -2,11 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Api.Entities
 {
-    public class Craftman
+    public class Craftman : EntityBase
     {
-        [Key]
-        [Required]
-        public int Rowid { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

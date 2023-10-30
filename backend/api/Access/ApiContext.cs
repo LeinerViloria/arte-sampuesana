@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Api.Entities;
 
-class ApiContext : DbContext
+public partial class ApiContext : DbContext
 {
     public ApiContext(DbContextOptions<ApiContext> options)
         : base(options) { }
