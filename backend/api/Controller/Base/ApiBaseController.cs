@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controller
 {
     [ApiController]
-    public abstract class ApiBaseController<T> : ControllerBase where T : class, IEntityLogicBase
+    public abstract class ApiBaseController<T, K> : ControllerBase where T : class, IEntityLogicBase
     {
         protected T Logic {get; set;}
 
@@ -17,7 +17,14 @@ namespace Api.Controller
         [HttpGet]
         public string Get()
         {
-            return $"Hola desde la base {typeof(T)}";
+            return Logic.Get();
+        }
+
+        [HttpPost]
+        public string Save()
+        {
+            var a = Logic.Save();
+            return "";
         }
     }
 }

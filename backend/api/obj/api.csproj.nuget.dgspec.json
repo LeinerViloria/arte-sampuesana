@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj": {}
+    "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj": {
+    "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
+        "projectUniqueName": "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
+        "projectPath": "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
         "packagesPath": "C:\\Users\\lvilora\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\obj\\",
+        "outputPath": "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lvilora\\AppData\\Roaming\\NuGet\\NuGet.Config",

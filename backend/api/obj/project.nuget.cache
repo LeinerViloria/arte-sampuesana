@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2c6YCbaTsxJmMrvvTXa2i2Tdt6Ck5MhiqmKdieL6CqsKVz5dXZVWE2CvZd0iTuU+KJGyA1qYUswNGHSWBRqyXQ==",
+  "dgSpecHash": "abCxBC5rmSHlgXhxCVVF23uNxnBbc46lcmHJXOLJU3sdHe72C36eX1Z0WhA8h0x/aTN4Yiiyo0Umn9DGmNXXrQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
+  "projectFilePath": "c:\\Users\\lvilora\\Desktop\\Cecar 7-8\\Gestion de proyectos\\Proyecto\\backend\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lvilora\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lvilora\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.13\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.13.nupkg.sha512",
