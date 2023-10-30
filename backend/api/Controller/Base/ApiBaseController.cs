@@ -1,10 +1,11 @@
 
+using Api.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controller
 {
     [ApiController]
-    public abstract class ApiBaseController<T> : ControllerBase where T : class
+    public abstract class ApiBaseController<T> : ControllerBase where T : class, IEntityLogicBase
     {
         protected T Logic {get; set;}
 
