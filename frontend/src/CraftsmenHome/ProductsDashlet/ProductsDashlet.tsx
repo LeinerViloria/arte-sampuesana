@@ -1,4 +1,4 @@
-import { Card, Pagination, Image } from 'antd';
+import { Card, Pagination, Image, Row, Col } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
 import {
@@ -96,24 +96,24 @@ class ProductsDashlet extends Component {
                 <Title level={4}>
                     Mis productos
                 </Title>
-                <div className='d-flex w-100 mb-2'>
+                <Row className='w-100'>
                     {products.map((product, index) => (
-                        <Card bordered={false} style={{
-                            width:"20%"
-                        }}>
-                            <Image
-                                src={product.image}
-                            />
-                            <Title level={5} className='mt-2'>
-                                {product.name}
-                            </Title>
-                            <p>${product.price}</p>
-                            <div className='d-flex w-100 justify-content-center'>
-                                <StarTwoTone />
-                            </div>
-                        </Card>
+                        <Col span={6} className='w-100 mb-3'>
+                            <Card bordered={false}>
+                                <Image
+                                    src={product.image}
+                                />
+                                <Title level={5} className='mt-2'>
+                                    {product.name}
+                                </Title>
+                                <p>${product.price}</p>
+                                <div className='d-flex w-100 justify-content-center'>
+                                    <StarTwoTone />
+                                </div>
+                            </Card>
+                        </Col>
                     ))}
-                </div>
+                </Row>
                 <Pagination showQuickJumper defaultCurrent={2} total={500}/>
             </React.Fragment>
         );
