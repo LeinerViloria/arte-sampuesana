@@ -5,6 +5,35 @@ import {
     StarTwoTone
 } from '@ant-design/icons';
 
+class Product
+{
+    name?:string;
+    price?:number;
+    mark?:number;
+    image?:string;
+}
+
+const products: Product[] = [
+    {
+        "name": "Producto 1",
+        "price": 10000,
+        "mark": 1,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 2",
+        "price": 36000,
+        "mark": 2,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    },
+    {
+        "name": "Producto 3",
+        "price": 58000,
+        "mark": 3,
+        "image": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    }
+];
+
 class ProductsDashlet extends Component {
     render() {
         return (
