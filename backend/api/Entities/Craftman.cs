@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Api.Enum;
 
 namespace Api.Entities
 {
@@ -8,5 +9,7 @@ namespace Api.Entities
         public string Name { get; set; }
         [Required]
         public string LastName {get; set;}
+        [Required]
+        public enumGender Gender {get; set;} = enumGender.Undefined;
     }
 }
