@@ -4,6 +4,7 @@ namespace Api.Entities
 {
     public class Craftman
     {
+        [Key]
         [Required]
         public int Rowid { get; set; }
         [Required]
