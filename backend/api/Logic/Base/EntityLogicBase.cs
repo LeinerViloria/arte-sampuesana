@@ -3,37 +3,37 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Logic
 {
-    public interface IEntityLogicBase
+    public interface IEntityLogicBase<T> where T : class
     {
-        dynamic Save();
-        bool Delete();
-        string Get();
+        T Save(T BaseObj);
+        bool Delete(int Rowid);
+        string Get(int Rowid);
     }
 
-    public abstract class EntityLogicBase<T> : IEntityLogicBase where T : class
+    public abstract class EntityLogicBase<T> : IEntityLogicBase<T> where T : class
     {
-        public T BaseObj {get; set;}
         protected IServiceProvider ServiceProvider {get; set;}
         protected ApiContext Context {get; set;}
 
         public EntityLogicBase(IServiceProvider provider)
         {
-            BaseObj = ActivatorUtilities.CreateInstance<T>(provider);
             ServiceProvider = provider;
             Context = (ApiContext) ServiceProvider.GetService(typeof(ApiContext));
         }
 
-        public dynamic Save()
+        public T Save(T Obj)
         {
-            return 1;
+            Context.Add(Obj);
+            Context.SaveChanges();
+            return Obj;
         }
 
-        public bool Delete()
+        public bool Delete(int Rowid)
         {
             throw new NotImplementedException();
         }
 
-        public string Get()
+        public string Get(int Rowid)
         {
             return $"Hola desde la base {typeof(T)}";
         }

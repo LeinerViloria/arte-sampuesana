@@ -10,7 +10,6 @@ namespace Api.Entities
         public int Rowid { get; set; }
         [Required]
         public DateTime CreationDate { get; set; }
-        [Required]
         public DateTime? LastUpdateDate { get; set; }
     }
 }

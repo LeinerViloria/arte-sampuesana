@@ -1,11 +1,12 @@
 
+using Api.Entities;
 using Api.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controller
 {
     [ApiController]
-    public abstract class ApiBaseController<T, K> : ControllerBase where T : class, IEntityLogicBase
+    public abstract class ApiBaseController<T, K> : ControllerBase where T : class, IEntityLogicBase<K> where K : class
     {
         protected T Logic {get; set;}
 
@@ -15,15 +16,15 @@ namespace Api.Controller
         }
 
         [HttpGet]
-        public string Get()
+        public string Get(int Rowid)
         {
-            return Logic.Get();
+            return Logic.Get(Rowid);
         }
 
         [HttpPost]
-        public string Save()
+        public string Save(K BaseObj)
         {
-            var a = Logic.Save();
+            var a = Logic.Save(BaseObj);
             return "";
         }
     }
