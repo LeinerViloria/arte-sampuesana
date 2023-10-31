@@ -17,6 +17,14 @@ namespace Api.Controller
         }
 
         [HttpGet]
+        public string Get()
+        {
+            var Obj = Logic.Get();
+
+            return JsonSerializer.Serialize(Obj);
+        }
+
+        [HttpGet("/{Rowid}")]
         public string Get(int Rowid)
         {
             var Obj = Logic.Get(Rowid);

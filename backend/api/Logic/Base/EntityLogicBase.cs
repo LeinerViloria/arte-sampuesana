@@ -10,6 +10,7 @@ namespace Api.Logic
         T Update(T BaseObj);
         bool Delete(int Rowid);
         T? Get(int Rowid);
+        IList<T> Get();
     }
 
     public abstract class EntityLogicBase<T> : IEntityLogicBase<T> where T : class
@@ -46,9 +47,11 @@ namespace Api.Logic
         {
             var Info = Context.Set<T>()
                 .Where("Rowid == @0", Rowid)
-                .First();
+                .FirstOrDefault();
 
-            Context.Remove(Info);
+            if(Info is not null)
+                Context.Remove(Info);
+
             var Result = Context.SaveChanges();
             return Result == 1;
         }
@@ -60,6 +63,12 @@ namespace Api.Logic
                 .FirstOrDefault();
 
             return Info;
+        }
+
+        public IList<T> Get()
+        {
+            var Data = Context.Set<T>().ToList();
+            return Data;
         }
     }
 }
