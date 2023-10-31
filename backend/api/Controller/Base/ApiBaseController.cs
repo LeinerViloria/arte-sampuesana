@@ -1,4 +1,5 @@
 
+using System.Text.Json;
 using Api.Entities;
 using Api.Logic;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,12 @@ namespace Api.Controller
         [HttpGet]
         public string Get(int Rowid)
         {
-            return Logic.Get(Rowid);
+            var Obj = Logic.Get(Rowid);
+
+            if(Obj is null)
+                return "{}";
+
+            return JsonSerializer.Serialize(Obj);
         }
 
         [HttpPost]

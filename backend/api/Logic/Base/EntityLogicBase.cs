@@ -9,7 +9,7 @@ namespace Api.Logic
         T Save(T BaseObj);
         T Update(T BaseObj);
         bool Delete(int Rowid);
-        string Get(int Rowid);
+        T? Get(int Rowid);
     }
 
     public abstract class EntityLogicBase<T> : IEntityLogicBase<T> where T : class
@@ -44,12 +44,22 @@ namespace Api.Logic
 
         public bool Delete(int Rowid)
         {
-            throw new NotImplementedException();
+            var Info = Context.Set<T>()
+                .Where("Rowid == @0", Rowid)
+                .First();
+
+            Context.Remove(Info);
+            var Result = Context.SaveChanges();
+            return Result == 1;
         }
 
-        public string Get(int Rowid)
+        public T? Get(int Rowid)
         {
-            return $"Hola desde la base {typeof(T)}";
+            var Info = Context.Set<T>()
+                .Where("Rowid == @0", Rowid)
+                .FirstOrDefault();
+
+            return Info;
         }
     }
 }
