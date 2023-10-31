@@ -39,7 +39,7 @@ namespace Api.Logic
             Context.ResetValues(Info, Obj);
 
             Context.SaveChanges();
-            return Obj;
+            return Info;
         }
 
         public bool Delete(int Rowid)

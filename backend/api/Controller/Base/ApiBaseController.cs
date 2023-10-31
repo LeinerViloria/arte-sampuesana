@@ -22,7 +22,7 @@ namespace Api.Controller
             var Obj = Logic.Get(Rowid);
 
             if(Obj is null)
-                return "{}";
+                return JsonSerializer.Serialize(new{Message="Not found"});
 
             return JsonSerializer.Serialize(Obj);
         }
@@ -30,15 +30,23 @@ namespace Api.Controller
         [HttpPost]
         public string Save(K BaseObj)
         {
-            var a = Logic.Save(BaseObj);
-            return "";
+            var Result = Logic.Save(BaseObj);
+            return JsonSerializer.Serialize(Result);
         }
 
         [HttpPut]
         public string Update(K BaseObj)
         {
-            var a = Logic.Update(BaseObj);
-            return "";
+            var Result = Logic.Update(BaseObj);
+            return JsonSerializer.Serialize(Result);
+        }
+
+        [HttpDelete]
+        public string Delete(int Rowid)
+        {
+            var Result = Logic.Delete(Rowid);
+
+            return JsonSerializer.Serialize(new{Deleted=Result});
         }
     }
 }
