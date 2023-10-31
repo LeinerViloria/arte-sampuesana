@@ -23,11 +23,6 @@ namespace Api.Logic
             Context = (ApiContext) ServiceProvider.GetService(typeof(ApiContext));
         }
 
-        public ApiContext CreateContext()
-        {
-            return null;
-        }
-
         public dynamic Save()
         {
             return 1;
