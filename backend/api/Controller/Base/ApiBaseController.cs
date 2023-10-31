@@ -27,5 +27,12 @@ namespace Api.Controller
             var a = Logic.Save(BaseObj);
             return "";
         }
+
+        [HttpPut]
+        public string Update(K BaseObj)
+        {
+            var a = Logic.Update(BaseObj);
+            return "";
+        }
     }
 }

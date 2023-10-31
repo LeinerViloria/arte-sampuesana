@@ -1,4 +1,5 @@
 
+using System.Linq.Dynamic.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Logic
@@ -6,6 +7,7 @@ namespace Api.Logic
     public interface IEntityLogicBase<T> where T : class
     {
         T Save(T BaseObj);
+        T Update(T BaseObj);
         bool Delete(int Rowid);
         string Get(int Rowid);
     }
@@ -24,6 +26,18 @@ namespace Api.Logic
         public T Save(T Obj)
         {
             Context.Add(Obj);
+            Context.SaveChanges();
+            return Obj;
+        }
+
+        public T Update(T Obj)
+        {
+            var Info = Context.Set<T>()
+                .Where("Rowid == @0", Obj.GetType().GetProperty("Rowid").GetValue(Obj))
+                .First();
+
+            Context.ResetValues(Info, Obj);
+
             Context.SaveChanges();
             return Obj;
         }
