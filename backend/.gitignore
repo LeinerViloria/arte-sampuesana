@@ -1,21 +1,21 @@
 # Carpeta bin y obj generadas por el compilador
-.api/bin/
-.api/obj/
+/api/bin/
+/api/obj/
 
 # Carpeta de salida de publicación
-.api/publish/
+/api/publish/
 
 # Archivos generados por Visual Studio
-.vscode/
-.vs/
+/vscode/
+/vs/
 *.suo
 *.user
 *.suo
 *.user
 # Archivos de configuración de usuario
-.api/appsettings.Development.json
-.api/appsettings.Production.json
-.api/launchSettings.json
+/api/appsettings.Development.json
+/api/appsettings.Production.json
+/api/launchSettings.json
 
 # Archivos de registro
 *.log
