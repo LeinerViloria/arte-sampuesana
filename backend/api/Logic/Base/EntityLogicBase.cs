@@ -64,19 +64,8 @@ namespace Api.Logic
             return Result == 1;
         }
 
-        public T? Get(int Rowid)
+        private IQueryable<T> SetInclude(IQueryable<T> Query)
         {
-            var Info = Context.Set<T>()
-                .Where("Rowid == @0", Rowid)
-                .FirstOrDefault();
-
-            return Info;
-        }
-
-        public IList<T> Get()
-        {
-            var Query = Context.Set<T>().AsQueryable();
-
             var ForeignProperties = typeof(T).GetProperties()
                 .Where(x => x.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0)
                 .Select(x => (ForeignKeyAttribute) x.GetCustomAttributes(typeof(ForeignKeyAttribute), false)[0]);
@@ -84,6 +73,25 @@ namespace Api.Logic
             foreach (var Property in ForeignProperties)
                 Query = Query.Include(Property.Name);
 
+            return Query;
+        }
+
+        public T? Get(int Rowid)
+        {
+            var Query = Context.Set<T>()
+                .Where("Rowid == @0", Rowid)
+                .AsQueryable();
+
+            Query = SetInclude(Query);
+            
+            var Info = Query.FirstOrDefault();
+
+            return Info;
+        }
+
+        public IList<T> Get()
+        {
+            var Query = Context.Set<T>().AsQueryable();
             var Data = Query.ToList(); 
             return Data;
         }
