@@ -25,14 +25,14 @@ namespace Api.Logic
             Context = (ApiContext) ServiceProvider.GetService(typeof(ApiContext));
         }
 
-        public T Save(T Obj)
+        public virtual T Save(T Obj)
         {
             Context.Add(Obj);
             Context.SaveChanges();
             return Obj;
         }
 
-        public T Update(T Obj)
+        public virtual T Update(T Obj)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Api.Logic
             }
         }
 
-        public bool Delete(int Rowid)
+        public virtual bool Delete(int Rowid)
         {
             var Info = Context.Set<T>()
                 .Where("Rowid == @0", Rowid)
@@ -64,7 +64,7 @@ namespace Api.Logic
             return Result == 1;
         }
 
-        private IQueryable<T> SetInclude(IQueryable<T> Query)
+        IQueryable<T> SetInclude(IQueryable<T> Query)
         {
             var ForeignProperties = typeof(T).GetProperties()
                 .Where(x => x.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0)
@@ -76,7 +76,7 @@ namespace Api.Logic
             return Query;
         }
 
-        public T? Get(int Rowid)
+        public virtual T? Get(int Rowid)
         {
             var Query = Context.Set<T>()
                 .Where("Rowid == @0", Rowid)
@@ -89,7 +89,7 @@ namespace Api.Logic
             return Info;
         }
 
-        public IList<T> Get()
+        public virtual IList<T> Get()
         {
             var Query = Context.Set<T>().AsQueryable();
             var Data = Query.ToList(); 
