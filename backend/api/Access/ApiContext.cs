@@ -12,4 +12,5 @@ public partial class ApiContext : DbContext
     }
 
     public DbSet<Craftman> Craftman => Set<Craftman>();
+    public DbSet<CraftmanBusiness> CraftmanBusinesses => Set<CraftmanBusiness>();
 }

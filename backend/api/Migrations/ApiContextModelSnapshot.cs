@@ -35,7 +35,6 @@ namespace api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime?>("LastUpdateDate")
-                        .IsRequired()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
@@ -45,6 +44,40 @@ namespace api.Migrations
                     b.HasKey("Rowid");
 
                     b.ToTable("Craftman");
+                });
+
+            modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
+                {
+                    b.Property<int>("Rowid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("RowidCraftman")
+                        .HasColumnType("int");
+
+                    b.HasKey("Rowid");
+
+                    b.HasIndex(new[] { "RowidCraftman" }, "CraftmanBusiness_Index_1")
+                        .IsUnique();
+
+                    b.ToTable("CraftmanBusinesses");
+                });
+
+            modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
+                {
+                    b.HasOne("Api.Entities.Craftman", "Craftman")
+                        .WithMany()
+                        .HasForeignKey("RowidCraftman")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Craftman");
                 });
 #pragma warning restore 612, 618
         }

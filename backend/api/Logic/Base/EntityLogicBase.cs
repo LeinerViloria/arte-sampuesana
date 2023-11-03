@@ -1,6 +1,7 @@
 
 using System.Linq.Dynamic.Core;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Logic
 {
@@ -74,7 +75,16 @@ namespace Api.Logic
 
         public IList<T> Get()
         {
-            var Data = Context.Set<T>().ToList();
+            var Query = Context.Set<T>().AsQueryable();
+
+            var ForeignProperties = typeof(T).GetProperties()
+                .Where(x => x.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0)
+                .Select(x => (ForeignKeyAttribute) x.GetCustomAttributes(typeof(ForeignKeyAttribute), false)[0]);
+
+            foreach (var Property in ForeignProperties)
+                Query = Query.Include(Property.Name);
+
+            var Data = Query.ToList(); 
             return Data;
         }
     }
