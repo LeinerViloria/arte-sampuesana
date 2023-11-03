@@ -66,7 +66,38 @@ namespace api.Migrations
                     b.HasIndex(new[] { "RowidCraftman" }, "CraftmanBusiness_Index_1")
                         .IsUnique();
 
-                    b.ToTable("CraftmanBusinesses");
+                    b.ToTable("CraftmanBusiness");
+                });
+
+            modelBuilder.Entity("Api.Entities.Product", b =>
+                {
+                    b.Property<int>("Rowid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
+
+                    b.HasKey("Rowid");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
