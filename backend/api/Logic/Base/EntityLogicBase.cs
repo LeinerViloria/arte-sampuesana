@@ -34,21 +34,14 @@ namespace Api.Logic
 
         public virtual T Update(T Obj)
         {
-            try
-            {
-                var Info = Context.Set<T>()
-                    .Where("Rowid == @0", Obj.GetType().GetProperty("Rowid").GetValue(Obj))
-                    .First();
+            var Info = Context.Set<T>()
+                .Where("Rowid == @0", Obj.GetType().GetProperty("Rowid").GetValue(Obj))
+                .First();
 
-                Context.ResetValues(Info, Obj);
+            Context.ResetValues(Info, Obj);
 
-                Context.SaveChanges();
-                return Info;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            Context.SaveChanges();
+            return Info;
         }
 
         public virtual bool Delete(int Rowid)

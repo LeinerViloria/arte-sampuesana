@@ -36,25 +36,45 @@ namespace Api.Controller
         }
 
         [HttpPost]
-        public string Save(K BaseObj)
+        public IResult Save(K BaseObj)
         {
-            var Result = Logic.Save(BaseObj);
-            return JsonSerializer.Serialize(Result);
+            try
+            {
+                var Result = Logic.Save(BaseObj);
+                return Results.Ok(Result);
+            }
+            catch (Exception e)
+            {
+                return Results.Problem(e.InnerException?.Message);
+            }
         }
 
         [HttpPut]
-        public string Update(K BaseObj)
+        public IResult Update(K BaseObj)
         {
-            var Result = Logic.Update(BaseObj);
-            return JsonSerializer.Serialize(Result);
+            try
+            {
+                var Result = Logic.Update(BaseObj);
+                return Results.Ok(Result);
+            }
+            catch (Exception e)
+            {
+                return Results.Problem(e.Message);
+            }
         }
 
         [HttpDelete]
-        public string Delete(int Rowid)
+        public IResult Delete(int Rowid)
         {
-            var Result = Logic.Delete(Rowid);
-
-            return JsonSerializer.Serialize(new{Deleted=Result});
+            try
+            {
+                var Result = Logic.Delete(Rowid);
+                return Results.Ok(Result);
+            }
+            catch (Exception e)
+            {
+                return Results.Problem(e.InnerException?.Message);
+            }
         }
     }
 }
