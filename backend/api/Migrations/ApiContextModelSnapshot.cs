@@ -78,6 +78,11 @@ namespace api.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("CulturalInformation")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -100,6 +105,33 @@ namespace api.Migrations
                     b.ToTable("Product");
                 });
 
+            modelBuilder.Entity("Api.Entities.ProductBusiness", b =>
+                {
+                    b.Property<int>("Rowid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("RowidBusiness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RowidProduct")
+                        .HasColumnType("int");
+
+                    b.HasKey("Rowid");
+
+                    b.HasIndex("RowidBusiness");
+
+                    b.HasIndex("RowidProduct");
+
+                    b.ToTable("ProductBusiness");
+                });
+
             modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
                 {
                     b.HasOne("Api.Entities.Craftman", "Craftman")
@@ -109,6 +141,25 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.Navigation("Craftman");
+                });
+
+            modelBuilder.Entity("Api.Entities.ProductBusiness", b =>
+                {
+                    b.HasOne("Api.Entities.CraftmanBusiness", "Business")
+                        .WithMany()
+                        .HasForeignKey("RowidBusiness")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("RowidProduct")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

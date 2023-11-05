@@ -19,4 +19,6 @@ public class Product : EntityBase
     [Range(0, 5)]
     public int Stars { get; set; }
     
+    [StringLength(2000)]
+    public string CulturalInformation { get; set; }
 }
