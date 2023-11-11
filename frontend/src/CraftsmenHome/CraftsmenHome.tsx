@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd';
+import { Button, Card, Col, Row } from 'antd';
 import React from 'react';
 import './CraftsmenHome.tsx.css';
 import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
@@ -43,9 +43,9 @@ function CraftsmenHome()
                     <Row>
                         <Card className='w-100'>
                             <Title level={5}>
-                                <a href='/artesano/publication'>
-                                    Publicaciones
-                                </a>
+                                <Button type="link" block>
+                                    Genera tu QR
+                                </Button>
                             </Title>
                         </Card>
                     </Row>

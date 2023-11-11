@@ -39,6 +39,7 @@ class PersonalInformationDashlet extends Component<IComponentProp, IComponentSta
         axios.get(`http://localhost:5084/Craftman/Percentage/${Data.rowid}`)
         .then(percentageRes => {
             let value: number = percentageRes.data;
+            console.log(value);
             this.setState({percentage: value});
         }).catch(error => {
             console.error('Error con el porcentaje:', error);
