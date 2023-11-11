@@ -8,5 +8,16 @@ namespace Api.Logic
         public CraftmanLogic(IServiceProvider provider) : base(provider)
         {
         }
+
+        public Craftman First()
+        {
+            return Context.Set<Craftman>().First();
+        }
+
+        public int GetPercentage(int Rowid)
+        {
+            var Data = Get(Rowid);
+            return 80;
+        }
     }
 }

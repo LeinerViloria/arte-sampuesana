@@ -11,5 +11,17 @@ namespace Api.Controller
         public CraftmanController(IServiceProvider provider) : base(provider)
         {
         }
+
+        [HttpGet("Percentage")]
+        public IResult GetPercentage(int Rowid)
+        {
+            return Results.Ok(95);
+        }
+
+        [HttpGet("First")]
+        public IResult GetFirst()
+        {
+            return Results.Ok(Logic.First());
+        }
     }
 }
