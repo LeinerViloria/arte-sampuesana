@@ -12,10 +12,10 @@ namespace Api.Controller
         {
         }
 
-        [HttpGet("Percentage")]
+        [HttpGet("Percentage/{Rowid}")]
         public IResult GetPercentage(int Rowid)
         {
-            return Results.Ok(95);
+            return Results.Ok(Logic.GetPercentage(Rowid));
         }
 
         [HttpGet("First")]

@@ -1,5 +1,6 @@
-
 using Api.Entities;
+using System;
+using System.Reflection;
 
 namespace Api.Logic
 {
@@ -17,7 +18,25 @@ namespace Api.Logic
         public int GetPercentage(int Rowid)
         {
             var Data = Get(Rowid);
-            return 80;
+
+            var Properties = typeof(Craftman).GetProperties()
+                .Where(x => !x.PropertyType.IsClass);
+
+            var Base = 100/Properties.Count();
+            var Total = 0;
+
+            foreach (var Property in Properties)
+            {
+                var CurrentValue = Property.GetValue(Data);
+                var DefaultValue = Activator.CreateInstance(Property.PropertyType);
+
+                if(CurrentValue == DefaultValue)
+                    continue;
+
+                Total += Base;
+            }
+            
+            return Total;
         }
     }
 }
