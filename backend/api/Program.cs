@@ -11,6 +11,11 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+
 app.MapGet("/", () => "Hello World!");
 
 if (app.Environment.IsDevelopment())
