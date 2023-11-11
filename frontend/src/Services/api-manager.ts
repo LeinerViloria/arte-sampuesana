@@ -2,16 +2,21 @@ class ApiManager
 {
     private baseUrl: string;
 
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
+    constructor() {
+        this.baseUrl = "http://localhost:5084";
     }
 
-    async get(endpoint: string): Promise<any> {
-        const response = await fetch(`${this.baseUrl}/${endpoint}`);
+    public async get(endpoint: string): Promise<any> {
+        const response = await fetch(`${this.baseUrl}/${endpoint}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         return response.json();
     }
 
-    async put(endpoint: string, data: any): Promise<any> {
+    public async put(endpoint: string, data: any): Promise<any> {
         const response = await fetch(`${this.baseUrl}/${endpoint}`, {
         method: 'PUT',
         headers: {
@@ -22,7 +27,7 @@ class ApiManager
         return response.json();
     }
 
-    async delete(endpoint: string): Promise<void> {
+    public async delete(endpoint: string): Promise<void> {
         await fetch(`${this.baseUrl}/${endpoint}`, {
         method: 'DELETE',
         });
