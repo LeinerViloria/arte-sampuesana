@@ -1,23 +1,47 @@
 import { Button, Form, Input, Select } from 'antd';
 import Title from 'antd/es/typography/Title';
+import axios from 'axios';
 import React, { Component } from 'react';
 
 type FieldType = {
     rowid: number,
-    name: string;
-    lastname: string;
+    name: string,
+    lastname: string,
     gender: number
 };
 
-const valoresActuales : FieldType = {
-    rowid: 4,
-    name: 'Nombre Actual',
-    lastname: "Apellido actual",
-    gender: 1
-};
+interface IComponentProp {}
 
-class CraftmanBasicInformation extends Component {
-    onFinish(values: any){
+interface IComponentState {
+    currentValues: FieldType;
+}
+
+class CraftmanBasicInformation extends Component<IComponentProp, IComponentState> {
+
+    constructor(props: IComponentProp) {
+        super(props);
+        this.state = {
+            currentValues: {} as FieldType
+        };
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:5084/Craftman/First')
+            .then(response => {
+                this.setValues(response.data);
+                this.forceUpdate();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    setValues(values: FieldType) {
+        console.log(values);
+        this.setState({ currentValues: values });
+    }
+
+    onFinish(values: any) {
         console.log('Success:', values);
     };
 
@@ -30,26 +54,26 @@ class CraftmanBasicInformation extends Component {
                 <Form
                     layout='horizontal'
                     name='basicInformation'
-                    initialValues={valoresActuales}
+                    initialValues={this.state.currentValues}
                     onFinish={this.onFinish}
                 >
-                    <Form.Item<FieldType>
+                    <Form.Item
                         label="Nombres"
-                        name={"name"}
-                        rules={[{required: true, message: "Escribe tus nombres"}]}
+                        name="name"
+                        rules={[{ required: true, message: "Escribe tus nombres" }]}
                     >
                         <Input />
                     </Form.Item>
 
-                    <Form.Item<FieldType>
+                    <Form.Item
                         label="Apellidos"
-                        name={"lastname"}
-                        rules={[{required: true, message: "Escribe tus apellidos"}]}
+                        name="lastname"
+                        rules={[{ required: true, message: "Escribe tus apellidos" }]}
                     >
                         <Input />
                     </Form.Item>
 
-                    <Form.Item label="Género" name={"gender"}>
+                    <Form.Item label="Género" name="gender">
                         <Select>
                             <Select.Option value={0}>
                                 Prefiero no decirlo
