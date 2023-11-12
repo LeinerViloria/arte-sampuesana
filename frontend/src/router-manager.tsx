@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home/Home";
 import CraftsmenHome from "./CraftsmenHome/CraftsmenHome";
 import ErrorManager from './ErrorManager/ErrorManager';
+import CraftmanBasicInformation from './CraftmanBasicInformation/CraftmanBasicInformation';
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
       element: <CraftsmenHome />,
       errorElement: <ErrorManager />
     },
+    {
+      path: "/artesano/basicInformation",
+      element: <CraftmanBasicInformation />,
+      errorElement: <ErrorManager />
+    }
 ]);
 
 export default router;
