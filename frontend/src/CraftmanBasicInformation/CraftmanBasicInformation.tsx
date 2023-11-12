@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Spin } from 'antd';
+import { Button, Card, Form, Input, Select, Spin } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -26,20 +26,6 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
             currentValues: {} as FieldType,
             isReady: false
         }
-
-        axios.get('http://localhost:5084/Craftman/First')
-        .then(response =>
-        {
-            this.setState({currentValues: {
-                rowid : 1,
-                name: "Prueba",
-                lastname: "Apellido",
-                gender: 1,
-            }});
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
     }
 
     componentDidMount() {
@@ -61,6 +47,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
             <React.Fragment>
                 {
                     this.state.isReady ?
+                    <Card>
                         <React.Fragment>
                             <Title level={4}>
                                 Información personal
@@ -108,6 +95,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 </Form.Item>
                             </Form>
                         </React.Fragment>
+                        </Card>
                     :
                     <Spin tip="Loading" size="large" className='mt-3'>
                         <div className="content" />
