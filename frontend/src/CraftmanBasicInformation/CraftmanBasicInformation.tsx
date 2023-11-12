@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { viewContext } from '../enums';
 import {
-    SaveTwoTone, EditTwoTone
+    SaveTwoTone, EditTwoTone, CloseCircleTwoTone
 } from '@ant-design/icons';
 
 type FieldType = {
@@ -48,6 +48,15 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
         console.log('Success:', values);
     };
 
+    changeView()
+    {
+        const detail = viewContext.detail;
+        const edit = viewContext.edit;
+        console.log(this.state.view);
+        this.setState({view: this.state.view === detail ? edit : detail});
+        console.log(this.state.view);
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -67,15 +76,18 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 <Form.Item wrapperCol={{ span: 24 }}>
                                     {
                                         this.state.view === viewContext.detail ?
+                                        <Button type="dashed" htmlType="button" onClick={() => this.changeView()}>
+                                            <EditTwoTone />
+                                        </Button>
+                                        :
                                         <React.Fragment>
-                                            <Button type="dashed" htmlType="button">
-                                                <EditTwoTone />
+                                            <Button type="dashed" htmlType="button" onClick={() => this.changeView()}>
+                                                <CloseCircleTwoTone />
+                                            </Button>
+                                            <Button type="dashed" htmlType="submit">
+                                                <SaveTwoTone />
                                             </Button>
                                         </React.Fragment>
-                                        :
-                                        <Button type="dashed" htmlType="submit">
-                                            <SaveTwoTone />
-                                        </Button>
                                     }
                                 </Form.Item>
 
