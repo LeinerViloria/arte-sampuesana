@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { viewContext } from '../enums';
 import {
-    SaveTwoTone
+    SaveTwoTone, EditTwoTone
 } from '@ant-design/icons';
 
 type FieldType = {
@@ -67,7 +67,11 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 <Form.Item wrapperCol={{ span: 24 }}>
                                     {
                                         this.state.view === viewContext.detail ?
-                                        <p>Hola</p>
+                                        <React.Fragment>
+                                            <Button type="dashed" htmlType="button">
+                                                <EditTwoTone />
+                                            </Button>
+                                        </React.Fragment>
                                         :
                                         <Button type="dashed" htmlType="submit">
                                             <SaveTwoTone />
