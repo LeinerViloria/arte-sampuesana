@@ -3,6 +3,9 @@ import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
 import { viewContext } from '../enums';
+import {
+    SaveTwoTone
+} from '@ant-design/icons';
 
 type FieldType = {
     rowid: number,
@@ -62,9 +65,14 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 onFinish={this.onFinish}
                             >
                                 <Form.Item wrapperCol={{ span: 24 }}>
-                                    <Button type="primary" htmlType="submit">
-                                        Guardar
-                                    </Button>
+                                    {
+                                        this.state.view === viewContext.detail ?
+                                        <p>Hola</p>
+                                        :
+                                        <Button type="dashed" htmlType="submit">
+                                            <SaveTwoTone />
+                                        </Button>
+                                    }
                                 </Form.Item>
 
                                 <Form.Item
