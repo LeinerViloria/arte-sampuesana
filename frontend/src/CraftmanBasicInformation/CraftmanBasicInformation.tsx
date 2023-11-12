@@ -58,6 +58,12 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 initialValues={this.state.currentValues}
                                 onFinish={this.onFinish}
                             >
+                                <Form.Item wrapperCol={{ span: 24 }}>
+                                    <Button type="primary" htmlType="submit">
+                                        Guardar
+                                    </Button>
+                                </Form.Item>
+
                                 <Form.Item
                                     label="Nombres"
                                     name="name"
@@ -87,15 +93,9 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                         </Select.Option>
                                     </Select>
                                 </Form.Item>
-
-                                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                                    <Button type="primary" htmlType="submit">
-                                        Guardar
-                                    </Button>
-                                </Form.Item>
                             </Form>
                         </React.Fragment>
-                        </Card>
+                    </Card>
                     :
                     <Spin tip="Loading" size="large" className='mt-3'>
                         <div className="content" />
