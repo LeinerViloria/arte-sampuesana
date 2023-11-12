@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, Select, Spin } from 'antd';
+import { Button, Card, Form, Input, Select, Spin, message } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -10,8 +10,10 @@ import {
 type FieldType = {
     rowid: number,
     name: string,
-    lastname: string,
-    gender: number
+    lastName: string,
+    gender: number,
+    creationDate?: Date,
+    lastUpdateDate?: Date
 };
 
 interface IComponentProp {}
@@ -44,17 +46,23 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
             });
     }
 
-    onFinish(values: any) {
-        console.log('Success:', values);
+    onFinish(value: FieldType)
+    {
+        console.log(value);
+        axios.put('http://localhost:5084/Craftman/', value)
+            .then(response => {
+                message.success("Se guardó con éxito");
+            }).catch(error => {
+                console.error(error);
+                message.error("Ocurrió un error");
+            });
     };
 
     changeView()
     {
         const detail = viewContext.detail;
         const edit = viewContext.edit;
-        console.log(this.state.view);
         this.setState({view: this.state.view === detail ? edit : detail});
-        console.log(this.state.view);
     }
 
     render() {
@@ -92,6 +100,11 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 </Form.Item>
 
                                 <Form.Item
+                                    name="rowid"
+                                    hidden={true}
+                                />
+
+                                <Form.Item
                                     label="Nombres"
                                     name="name"
                                     rules={[{ required: true, message: "Escribe tus nombres" }]}
@@ -101,7 +114,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
 
                                 <Form.Item
                                     label="Apellidos"
-                                    name="lastname"
+                                    name="lastName"
                                     rules={[{ required: true, message: "Escribe tus apellidos" }]}
                                 >
                                     <Input disabled={this.state.view === viewContext.detail} />
