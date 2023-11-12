@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, Spin } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -14,31 +14,42 @@ interface IComponentProp {}
 
 interface IComponentState {
     currentValues: FieldType;
+    isReady: boolean;
 }
 
 class CraftmanBasicInformation extends Component<IComponentProp, IComponentState> {
 
-    constructor(props: IComponentProp) {
+    constructor(props: IComponentProp)
+    {
         super(props);
         this.state = {
-            currentValues: {} as FieldType
-        };
+            currentValues: {} as FieldType,
+            isReady: false
+        }
+
+        axios.get('http://localhost:5084/Craftman/First')
+        .then(response =>
+        {
+            this.setState({currentValues: {
+                rowid : 1,
+                name: "Prueba",
+                lastname: "Apellido",
+                gender: 1,
+            }});
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     componentDidMount() {
         axios.get('http://localhost:5084/Craftman/First')
             .then(response => {
-                this.setValues(response.data);
-                this.forceUpdate();
+                this.setState({ currentValues: response.data, isReady: true });
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-    }
-
-    setValues(values: FieldType) {
-        console.log(values);
-        this.setState({ currentValues: values });
     }
 
     onFinish(values: any) {
@@ -48,51 +59,62 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     render() {
         return (
             <React.Fragment>
-                <Title level={4}>
-                    Información personal
-                </Title>
-                <Form
-                    layout='horizontal'
-                    name='basicInformation'
-                    initialValues={this.state.currentValues}
-                    onFinish={this.onFinish}
-                >
-                    <Form.Item
-                        label="Nombres"
-                        name="name"
-                        rules={[{ required: true, message: "Escribe tus nombres" }]}
-                    >
-                        <Input />
-                    </Form.Item>
+                {
+                    this.state.isReady ?
+                        <React.Fragment>
+                            <Title level={4}>
+                                Información personal
+                            </Title>
+                            <Form
+                                layout='horizontal'
+                                name='basicInformation'
+                                initialValues={this.state.currentValues}
+                                onFinish={this.onFinish}
+                            >
+                                <Form.Item
+                                    label="Nombres"
+                                    name="name"
+                                    rules={[{ required: true, message: "Escribe tus nombres" }]}
+                                    initialValue={this.state.currentValues.name}
+                                >
+                                    <Input />
+                                </Form.Item>
 
-                    <Form.Item
-                        label="Apellidos"
-                        name="lastname"
-                        rules={[{ required: true, message: "Escribe tus apellidos" }]}
-                    >
-                        <Input />
-                    </Form.Item>
+                                <Form.Item
+                                    label="Apellidos"
+                                    name="lastname"
+                                    rules={[{ required: true, message: "Escribe tus apellidos" }]}
+                                    initialValue={this.state.currentValues.lastname}
+                                >
+                                    <Input />
+                                </Form.Item>
 
-                    <Form.Item label="Género" name="gender">
-                        <Select>
-                            <Select.Option value={0}>
-                                Prefiero no decirlo
-                            </Select.Option>
-                            <Select.Option value={1}>
-                                Hombre
-                            </Select.Option>
-                            <Select.Option value={2}>
-                                Mujer
-                            </Select.Option>
-                        </Select>
-                    </Form.Item>
+                                <Form.Item label="Género" name="gender" initialValue={this.state.currentValues.gender}>
+                                    <Select>
+                                        <Select.Option value={0}>
+                                            Prefiero no decirlo
+                                        </Select.Option>
+                                        <Select.Option value={1}>
+                                            Hombre
+                                        </Select.Option>
+                                        <Select.Option value={2}>
+                                            Mujer
+                                        </Select.Option>
+                                    </Select>
+                                </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit">
-                            Guardar
-                        </Button>
-                    </Form.Item>
-                </Form>
+                                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                                    <Button type="primary" htmlType="submit">
+                                        Guardar
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </React.Fragment>
+                    :
+                    <Spin tip="Loading" size="large" className='mt-3'>
+                        <div className="content" />
+                    </Spin>
+                }
             </React.Fragment>
         );
     }
