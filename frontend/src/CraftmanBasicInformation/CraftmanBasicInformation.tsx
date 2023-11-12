@@ -75,7 +75,6 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                     label="Nombres"
                                     name="name"
                                     rules={[{ required: true, message: "Escribe tus nombres" }]}
-                                    initialValue={this.state.currentValues.name}
                                 >
                                     <Input />
                                 </Form.Item>
@@ -84,12 +83,11 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                     label="Apellidos"
                                     name="lastname"
                                     rules={[{ required: true, message: "Escribe tus apellidos" }]}
-                                    initialValue={this.state.currentValues.lastname}
                                 >
                                     <Input />
                                 </Form.Item>
 
-                                <Form.Item label="Género" name="gender" initialValue={this.state.currentValues.gender}>
+                                <Form.Item label="Género" name="gender" initialValue={0}>
                                     <Select>
                                         <Select.Option value={0}>
                                             Prefiero no decirlo
