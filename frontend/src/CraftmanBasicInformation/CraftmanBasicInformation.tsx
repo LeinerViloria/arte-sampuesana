@@ -2,6 +2,7 @@ import { Button, Card, Form, Input, Select, Spin } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
+import { viewContext } from '../enums';
 
 type FieldType = {
     rowid: number,
@@ -15,6 +16,7 @@ interface IComponentProp {}
 interface IComponentState {
     currentValues: FieldType;
     isReady: boolean;
+    view: viewContext
 }
 
 class CraftmanBasicInformation extends Component<IComponentProp, IComponentState> {
@@ -24,7 +26,8 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
         super(props);
         this.state = {
             currentValues: {} as FieldType,
-            isReady: false
+            isReady: false,
+            view: viewContext.detail
         }
     }
 
@@ -69,7 +72,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                     name="name"
                                     rules={[{ required: true, message: "Escribe tus nombres" }]}
                                 >
-                                    <Input />
+                                    <Input disabled={this.state.view === viewContext.detail} />
                                 </Form.Item>
 
                                 <Form.Item
@@ -77,11 +80,11 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                     name="lastname"
                                     rules={[{ required: true, message: "Escribe tus apellidos" }]}
                                 >
-                                    <Input />
+                                    <Input disabled={this.state.view === viewContext.detail} />
                                 </Form.Item>
 
                                 <Form.Item label="Género" name="gender" initialValue={0}>
-                                    <Select>
+                                    <Select disabled={this.state.view === viewContext.detail}>
                                         <Select.Option value={0}>
                                             Prefiero no decirlo
                                         </Select.Option>
