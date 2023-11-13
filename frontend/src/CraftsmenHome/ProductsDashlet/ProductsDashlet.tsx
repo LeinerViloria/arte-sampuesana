@@ -1,9 +1,6 @@
-import { Card, Pagination, Image, Row, Col } from 'antd';
+import { Card, Pagination, Image, Row, Col, Rate } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { Component } from 'react';
-import {
-    StarTwoTone
-} from '@ant-design/icons';
 
 class Product
 {
@@ -88,6 +85,7 @@ const products: Product[] = [
     }
 ];
 
+const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
 class ProductsDashlet extends Component {
     render() {
@@ -108,9 +106,7 @@ class ProductsDashlet extends Component {
                                 </Title>
                                 <p>${product.price}</p>
                                 <div className='d-flex w-100 justify-content-center'>
-                                    {Array.from({length: product.mark as number}, (_, i) => (
-                                        <StarTwoTone key={i} />
-                                    ))}
+                                    <Rate tooltips={desc} value={product.mark} disabled />
                                 </div>
                             </Card>
                         </Col>
