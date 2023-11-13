@@ -20,7 +20,8 @@ namespace Api.Logic
                 {
                     Rowid = x.Rowid,
                     Name = x.Name,
-                    QRUrl = x.QRUrl
+                    QRUrl = x.QRUrl,
+                    RowidCraftman = x.RowidCraftman
                 }).FirstOrDefault();
             
             return BaseObj;

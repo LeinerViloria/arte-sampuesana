@@ -10,7 +10,8 @@ import {
 type BusinessType = {
     rowid: number,
     name: string,
-    qrUrl: string
+    qrUrl: string,
+    rowidCraftman: number
 }
 
 type FieldType = {
@@ -59,6 +60,18 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     {
         console.log(value);
         axios.put('http://localhost:5084/Craftman/', value)
+            .then(response => {
+                message.success("Se guardó con éxito");
+            }).catch(error => {
+                console.error(error);
+                message.error("Ocurrió un error");
+            });
+    };
+
+    onBusinessFinish(value: BusinessType)
+    {
+        console.log(value);
+        axios.put('http://localhost:5084/CraftmanBusiness/', value)
             .then(response => {
                 message.success("Se guardó con éxito");
             }).catch(error => {
@@ -157,6 +170,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 layout='horizontal'
                                 name='businessInformation'
                                 initialValues={this.state.business}
+                                onFinish={this.onBusinessFinish}
                             >
                                 <Form.Item wrapperCol={{ span: 24 }}>
                                     {
@@ -178,6 +192,11 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
 
                                 <Form.Item
                                     name="rowid"
+                                    hidden={true}
+                                />
+
+                                <Form.Item
+                                    name="rowidCraftman"
                                     hidden={true}
                                 />
 
