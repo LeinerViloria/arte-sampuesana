@@ -18,23 +18,6 @@ interface IProduct
     culturalInformation: string
 }
 
-const columns: ColumnsType<IProduct> =
-[
-    {
-        title: 'Action',
-        key: 'operation',
-        fixed: 'left',
-        width: 100,
-        render: () => 
-            <div className='d-flex w-100 justify-content-center'>
-                <EditTwoTone className='p-2' /> <DeleteTwoTone className='p-2' />
-            </div>,
-    },
-    { title: 'Nombre', dataIndex: 'name', key: '1' },
-    { title: 'Precio', dataIndex: 'price', key: '2' },
-    { title: 'Calificación', dataIndex: 'stars', key: '3' }
-]
-
 interface IComponentProp {}
 
 interface IComponentState {
@@ -53,6 +36,40 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         }
     }
 
+    getColumns():ColumnsType<IProduct>{
+        return [
+            {
+                title: 'Action',
+                key: 'operation',
+                fixed: 'left',
+                width: 100,
+                render: (item) => 
+                    <div className={`d-flex w-100 justify-content-center`}>
+                        <EditTwoTone className='p-2' onClick={() => this.edit(item)} />
+                        <DeleteTwoTone className='p-2' onClick={() => this.delete(item)} />
+                    </div>,
+            },
+            { title: 'Nombre', dataIndex: 'name', key: '1' },
+            { title: 'Precio', dataIndex: 'price', key: '2' },
+            { title: 'Calificación', dataIndex: 'stars', key: '3' }
+        ]
+    }
+
+    edit(value: IProduct)
+    {
+        console.log(value);
+    }
+
+    delete(value: IProduct)
+    {
+
+    }
+
+    create()
+    {
+
+    }
+
     componentDidMount() {
         axios.get('http://localhost:5084/Craftman/FirstWithProducts')
             .then(response => {
@@ -66,8 +83,8 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         return (
             <React.Fragment>
                 <Title level={3}> Productos </Title>
-                <Table columns={columns} dataSource={this.state.data} loading={!this.state.isReady} />
-                <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} />
+                <Table columns={this.getColumns()} dataSource={this.state.data} loading={!this.state.isReady} />
+                <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} onClick={this.create} />
             </React.Fragment>
         );
     }
