@@ -1,4 +1,4 @@
-import { FloatButton, Modal } from 'antd';
+import { FloatButton, Modal, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
@@ -50,7 +50,15 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 render: (item) =>
                     <div className={`d-flex w-100 justify-content-center`}>
                         <EditTwoTone className='p-2' onClick={() => this.edit(item)} />
-                        <DeleteTwoTone className='p-2' onClick={() => this.delete(item)} />
+                        <Popconfirm
+                            title="Estás eliminando un producto"
+                            description="¿Estás seguro?"
+                            onConfirm={() => this.delete(item)}
+                            okText="Sí"
+                            cancelText="No"
+                        >
+                            <DeleteTwoTone className='p-2'/>
+                        </Popconfirm>
                     </div>,
             },
             { title: 'Nombre', dataIndex: 'name', key: '1' },
