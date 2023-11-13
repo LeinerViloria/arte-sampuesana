@@ -15,4 +15,5 @@ public class CraftmanBusiness : EntityBase
     [Required]
     public int RowidCraftman { get; set; }
     public Craftman? Craftman { get; set; }
+    public ICollection<Product> Products { get; set; }
 }

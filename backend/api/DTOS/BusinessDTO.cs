@@ -1,3 +1,5 @@
+using Api.Entities;
+
 namespace api.DTOS;
 
 public class BusinessDTO
@@ -6,4 +8,5 @@ public class BusinessDTO
     public string Name { get; set; }
     public string QRUrl { get; set; }
     public int RowidCraftman { get; set; }
+    public ICollection<Product> Products { get; set; }
 }

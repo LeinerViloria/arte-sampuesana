@@ -2,6 +2,7 @@ using Api.Entities;
 using System;
 using System.Reflection;
 using api.DTOS;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Logic
 {
@@ -49,6 +50,23 @@ namespace Api.Logic
             }
             
             return Total;
+        }
+
+        public Craftman GetFirstWithProducts()
+        {
+            var BaseObj = Context.Set<Craftman>().First();
+            BaseObj.Business = Context.Set<CraftmanBusiness>()
+                .Where(x => x.RowidCraftman == BaseObj.Rowid)
+                .Include(x => x.Products)
+                .Select(x => new BusinessDTO
+                {
+                    Rowid = x.Rowid,
+                    Name = x.Name,
+                    QRUrl = x.QRUrl,
+                    RowidCraftman = x.RowidCraftman,
+                    Products = x.Products
+                }).FirstOrDefault();
+            return BaseObj;
         }
     }
 }

@@ -23,5 +23,11 @@ namespace Api.Controller
         {
             return Results.Ok(Logic.First());
         }
+        
+        [HttpGet("FirstWithProducts")]
+        public IResult GetFirstWithProducts()
+        {
+            return Results.Ok(Logic.GetFirstWithProducts());
+        }
     }
 }
