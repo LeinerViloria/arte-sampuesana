@@ -7,6 +7,7 @@ import {
     PlusCircleFilled, EditTwoTone, DeleteTwoTone, EyeTwoTone, HomeOutlined
 } from '@ant-design/icons';
 import { viewContext } from '../enums';
+import ProductItem from '../ProductItem/ProductItem';
 
 interface IProduct
 {
@@ -138,7 +139,11 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                     okText={this.state.view == viewContext.detail ? "Editar" : "Guardar"}
                     cancelText="Cerrar"
                 >
-                    Contenido de la modal
+                    {
+                        this.state.view == viewContext.detail ?
+                        <ProductItem product={this.state.selectedItem} width={330} /> :
+                        <p>Contenido de la modal</p>
+                    }
                 </Modal>
             </React.Fragment>
         );
