@@ -39,7 +39,8 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     componentDidMount() {
         axios.get('http://localhost:5084/Craftman/First')
             .then(response => {
-                this.setState({ currentValues: response.data, isReady: true });
+                console.log(response.data);
+                //this.setState({ currentValues: response.data, isReady: true });
             })
             .catch(error => {
                 console.error('Error:', error);

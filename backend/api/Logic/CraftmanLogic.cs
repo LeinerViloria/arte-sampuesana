@@ -1,6 +1,7 @@
 using Api.Entities;
 using System;
 using System.Reflection;
+using api.DTOS;
 
 namespace Api.Logic
 {
@@ -12,7 +13,17 @@ namespace Api.Logic
 
         public Craftman First()
         {
-            return Context.Set<Craftman>().First();
+            var BaseObj = Context.Set<Craftman>().First();
+            BaseObj.Business = Context.Set<CraftmanBusiness>()
+                .Where(x => x.RowidCraftman == BaseObj.Rowid)
+                .Select(x => new BusinessDTO
+                {
+                    Rowid = x.Rowid,
+                    Name = x.Name,
+                    QRUrl = x.QRUrl
+                }).FirstOrDefault();
+            
+            return BaseObj;
         }
 
         public int GetPercentage(int Rowid)
