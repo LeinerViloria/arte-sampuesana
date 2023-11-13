@@ -105,39 +105,17 @@ namespace api.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("Stars")
-                        .HasColumnType("int");
-
-                    b.HasKey("Rowid");
-
-                    b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("Api.Entities.ProductBusiness", b =>
-                {
-                    b.Property<int>("Rowid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("LastUpdateDate")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int>("RowidBusiness")
                         .HasColumnType("int");
 
-                    b.Property<int>("RowidProduct")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Stars")
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Rowid");
 
                     b.HasIndex("RowidBusiness");
 
-                    b.HasIndex("RowidProduct");
-
-                    b.ToTable("ProductBusiness");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
@@ -151,7 +129,7 @@ namespace api.Migrations
                     b.Navigation("Craftman");
                 });
 
-            modelBuilder.Entity("Api.Entities.ProductBusiness", b =>
+            modelBuilder.Entity("Api.Entities.Product", b =>
                 {
                     b.HasOne("Api.Entities.CraftmanBusiness", "Business")
                         .WithMany()
@@ -159,15 +137,7 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Api.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("RowidProduct")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Business");
-
-                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

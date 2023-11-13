@@ -14,5 +14,4 @@ public partial class ApiContext : DbContext
     public DbSet<Craftman> Craftman => Set<Craftman>();
     public DbSet<CraftmanBusiness> CraftmanBusiness => Set<CraftmanBusiness>();
     public DbSet<Product> Product => Set<Product>();
-    public DbSet<ProductBusiness> ProductBusiness => Set<ProductBusiness>();
 }

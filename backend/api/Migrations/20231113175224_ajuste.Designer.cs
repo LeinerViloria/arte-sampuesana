@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace api.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20231103033240_Products")]
-    partial class Products
+    [Migration("20231113175224_ajuste")]
+    partial class ajuste
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,14 @@ namespace api.Migrations
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QRUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("RowidCraftman")
                         .HasColumnType("int");
 
@@ -69,7 +77,48 @@ namespace api.Migrations
                     b.HasIndex(new[] { "RowidCraftman" }, "CraftmanBusiness_Index_1")
                         .IsUnique();
 
-                    b.ToTable("CraftmanBusinesses");
+                    b.ToTable("CraftmanBusiness");
+                });
+
+            modelBuilder.Entity("Api.Entities.Product", b =>
+                {
+                    b.Property<int>("Rowid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CulturalInformation")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("RowidBusiness")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Stars")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Rowid");
+
+                    b.HasIndex("RowidBusiness");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Api.Entities.CraftmanBusiness", b =>
@@ -81,6 +130,17 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.Navigation("Craftman");
+                });
+
+            modelBuilder.Entity("Api.Entities.Product", b =>
+                {
+                    b.HasOne("Api.Entities.CraftmanBusiness", "Business")
+                        .WithMany()
+                        .HasForeignKey("RowidBusiness")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Entities;
 
@@ -17,8 +18,13 @@ public class Product : EntityBase
     
     [Required]
     [Range(0, 5)]
-    public int Stars { get; set; }
+    public decimal Stars { get; set; }
     
     [StringLength(2000)]
     public string CulturalInformation { get; set; }
+
+    [Required]
+    [ForeignKey("Business")]
+    public int RowidBusiness { get; set; }
+    public CraftmanBusiness? Business { get; set; }
 }
