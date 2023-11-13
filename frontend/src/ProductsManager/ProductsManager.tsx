@@ -4,8 +4,9 @@ import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
 import {
-    PlusCircleFilled, EditTwoTone, DeleteTwoTone
+    PlusCircleFilled, EditTwoTone, DeleteTwoTone, EyeTwoTone
 } from '@ant-design/icons';
+import { viewContext } from '../enums';
 
 interface IProduct
 {
@@ -24,7 +25,8 @@ interface IComponentState {
     data: IProduct[],
     isReady: boolean,
     isModalVisible: boolean,
-    selectedItem: IProduct
+    selectedItem: IProduct,
+    view: viewContext | undefined
 }
 
 class ProductsManager extends Component<IComponentProp, IComponentState>
@@ -36,7 +38,8 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
             data: [],
             isReady: false,
             isModalVisible: false,
-            selectedItem: {} as IProduct
+            selectedItem: {} as IProduct,
+            view: undefined
         }
     }
 
@@ -50,6 +53,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 render: (item) =>
                     <div className={`d-flex w-100 justify-content-center`}>
                         <EditTwoTone className='p-2' onClick={() => this.edit(item)} />
+                        <EyeTwoTone className='p-2' onClick={() => this.detail(item)} />
                         <Popconfirm
                             title="Estás eliminando un producto"
                             description="¿Estás seguro?"
@@ -68,7 +72,11 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     edit(value: IProduct) {
-        this.setState({selectedItem: value, isModalVisible: true});
+        this.setState({selectedItem: value, isModalVisible: true, view: viewContext.edit});
+    }
+
+    detail(value: IProduct) {
+        this.setState({selectedItem: value, isModalVisible: true, view: viewContext.detail});
     }
 
     delete(value: IProduct) {
@@ -107,10 +115,12 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 <Modal
                     title={this.state.selectedItem.rowid == undefined ? 
                         "Crear producto" :
-                        `Editar - ${this.state.selectedItem.name}`}
+                        `Producto - ${this.state.selectedItem.name}`}
                     open={this.state.isModalVisible}
                     onOk={this.handleModalOk}
                     onCancel={this.handleModalCancel}
+                    okText={this.state.view == viewContext.detail ? "Editar" : "Guardar"}
+                    cancelText="Cerrar"
                 >
                     Contenido de la modal
                 </Modal>
