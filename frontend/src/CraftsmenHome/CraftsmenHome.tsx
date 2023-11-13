@@ -50,15 +50,6 @@ function CraftsmenHome()
                     <Row>
                         <Card className='w-100'>
                             <Title level={5}>
-                                <a href='/artesano/culturalInformation'>
-                                    Información cultural
-                                </a>
-                            </Title>
-                        </Card>
-                    </Row>
-                    <Row>
-                        <Card className='w-100'>
-                            <Title level={5}>
                                 <a href='/artesano/productsManager'>
                                     Administrar productos
                                 </a>

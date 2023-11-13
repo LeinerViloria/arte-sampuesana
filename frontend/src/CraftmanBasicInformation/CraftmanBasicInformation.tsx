@@ -105,12 +105,12 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 Información personal
                             </Title>
                             <Form
-                                layout='horizontal'
+                                layout='inline'
                                 name='basicInformation'
                                 initialValues={this.state.currentValues}
                                 onFinish={this.onFinish}
                             >
-                                <Form.Item wrapperCol={{ span: 24 }}>
+                                <Form.Item wrapperCol={{ span: 24 }} labelCol={{span: 24}} className='w-100 mb-4'>
                                     {
                                         this.state.view === viewContext.detail ?
                                         <Button type="dashed" htmlType="button" onClick={() => this.changeView()}>
@@ -136,6 +136,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 <Form.Item
                                     label="Nombres"
                                     name="name"
+                                    labelCol={{ span: 8 }}
                                     rules={[{ required: true, message: "Escribe tus nombres" }]}
                                 >
                                     <Input disabled={this.state.view === viewContext.detail} />
@@ -144,6 +145,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                 <Form.Item
                                     label="Apellidos"
                                     name="lastName"
+                                    labelCol={{ span: 8 }}
                                     rules={[{ required: true, message: "Escribe tus apellidos" }]}
                                 >
                                     <Input disabled={this.state.view === viewContext.detail} />
@@ -163,7 +165,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                     </Select>
                                 </Form.Item>
                             </Form>
-                            <Title level={4}>
+                            <Title level={4} className='mt-2'>
                                 Información del negocio
                             </Title>
                             <Form
