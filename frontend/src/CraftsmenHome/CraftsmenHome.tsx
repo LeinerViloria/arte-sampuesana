@@ -5,10 +5,22 @@ import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
 import PersonalInformationDashlet from './PersonalInformationDashlet/PersonalInformationDashlet';
 import Title from 'antd/es/typography/Title';
 import ProductsDashlet from './ProductsDashlet/ProductsDashlet';
+import axios from 'axios';
 
 function CraftsmenHome()
 {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [business, setBusiness] = useState<any | null>(null);
+    const [isReady, setIsReady] = useState(false);
+
+    axios.get('http://localhost:5084/Craftman/First')
+    .then(response => {
+        setBusiness(response.data.business);
+        setIsReady(true);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -65,7 +77,11 @@ function CraftsmenHome()
                                 <Modal title="QR" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
                                 okText={"Descargar"}>
                                     <div id='myqrcode' className='w-100 d-flex justify-content-center align-items-center'>
-                                        <QRCode type="canvas" value="https://www.facebook.com/artesampues2020/" />
+                                        {isReady ? 
+                                        <QRCode type="canvas" value={business.qrUrl} />
+                                        :
+                                        <span />
+                                        }
                                     </div>
                                 </Modal>
                             </Title>
