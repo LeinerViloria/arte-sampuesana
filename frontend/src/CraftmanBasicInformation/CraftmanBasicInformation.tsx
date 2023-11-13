@@ -7,21 +7,28 @@ import {
     SaveTwoTone, EditTwoTone, CloseCircleTwoTone
 } from '@ant-design/icons';
 
+type BusinessType = {
+    rowid: number,
+    name: string,
+    qrUrl: string
+}
+
 type FieldType = {
     rowid: number,
     name: string,
     lastName: string,
     gender: number,
-    creationDate?: Date,
-    lastUpdateDate?: Date
+    business: BusinessType
 };
 
 interface IComponentProp {}
 
 interface IComponentState {
     currentValues: FieldType;
-    isReady: boolean;
-    view: viewContext
+    business: BusinessType,
+    isReady: boolean,
+    view: viewContext,
+    businessView: viewContext
 }
 
 class CraftmanBasicInformation extends Component<IComponentProp, IComponentState> {
@@ -31,16 +38,17 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
         super(props);
         this.state = {
             currentValues: {} as FieldType,
+            business: {} as BusinessType,
             isReady: false,
-            view: viewContext.detail
+            view: viewContext.detail,
+            businessView: viewContext.detail
         }
     }
 
     componentDidMount() {
         axios.get('http://localhost:5084/Craftman/First')
             .then(response => {
-                console.log(response.data);
-                //this.setState({ currentValues: response.data, isReady: true });
+                this.setState({ currentValues: response.data, business: response.data.business, isReady: true });
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -64,6 +72,13 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
         const detail = viewContext.detail;
         const edit = viewContext.edit;
         this.setState({view: this.state.view === detail ? edit : detail});
+    }
+
+    changeBusinessView()
+    {
+        const detail = viewContext.detail;
+        const edit = viewContext.edit;
+        this.setState({businessView: this.state.businessView === detail ? edit : detail});
     }
 
     render() {
@@ -133,6 +148,53 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                                             Mujer
                                         </Select.Option>
                                     </Select>
+                                </Form.Item>
+                            </Form>
+                            <Title level={4}>
+                                Información del negocio
+                            </Title>
+                            <Form
+                                layout='horizontal'
+                                name='businessInformation'
+                                initialValues={this.state.business}
+                            >
+                                <Form.Item wrapperCol={{ span: 24 }}>
+                                    {
+                                        this.state.businessView === viewContext.detail ?
+                                        <Button type="dashed" htmlType="button" onClick={() => this.changeBusinessView()}>
+                                            <EditTwoTone />
+                                        </Button>
+                                        :
+                                        <React.Fragment>
+                                            <Button type="dashed" htmlType="button" onClick={() => this.changeBusinessView()}>
+                                                <CloseCircleTwoTone />
+                                            </Button>
+                                            <Button type="dashed" htmlType="submit">
+                                                <SaveTwoTone />
+                                            </Button>
+                                        </React.Fragment>
+                                    }
+                                </Form.Item>
+
+                                <Form.Item
+                                    name="rowid"
+                                    hidden={true}
+                                />
+
+                                <Form.Item
+                                    label="Nombre del negocio"
+                                    name="name"
+                                    rules={[{ required: true, message: "¿Cómo se llama tu negocio?" }]}
+                                >
+                                    <Input disabled={this.state.businessView === viewContext.detail} />
+                                </Form.Item>
+
+                                <Form.Item
+                                    label="Url"
+                                    name="qrUrl"
+                                    rules={[{ required: true, message: "Esta url podrá verse en un código QR" }]}
+                                >
+                                    <Input disabled={this.state.businessView === viewContext.detail} />
                                 </Form.Item>
                             </Form>
                         </React.Fragment>
