@@ -1,10 +1,10 @@
-import { Button, Card, Form, Input, Select, Spin, message } from 'antd';
+import { Breadcrumb, Button, Card, Form, Input, Select, Spin, message } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
 import { viewContext } from '../enums';
 import {
-    SaveTwoTone, EditTwoTone, CloseCircleTwoTone
+    SaveTwoTone, EditTwoTone, CloseCircleTwoTone, HomeOutlined
 } from '@ant-design/icons';
 
 type BusinessType = {
@@ -97,6 +97,22 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     render() {
         return (
             <React.Fragment>
+                <Breadcrumb
+                    className='mb-3'
+                    items={[
+                    {
+                        href: '/',
+                        title: <HomeOutlined />,
+                    },
+                    {
+                        href: '/artesano',
+                        title: 'Mi taller',
+                    },
+                    {
+                        title: 'Administrar información personal',
+                    },
+                    ]}
+                />
                 {
                     this.state.isReady ?
                     <Card>

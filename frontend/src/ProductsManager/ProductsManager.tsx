@@ -1,10 +1,10 @@
-import { FloatButton, Modal, Popconfirm } from 'antd';
+import { Breadcrumb, FloatButton, Modal, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import React, { Component } from 'react';
 import {
-    PlusCircleFilled, EditTwoTone, DeleteTwoTone, EyeTwoTone
+    PlusCircleFilled, EditTwoTone, DeleteTwoTone, EyeTwoTone, HomeOutlined
 } from '@ant-design/icons';
 import { viewContext } from '../enums';
 
@@ -108,6 +108,22 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     render() {
         return (
             <React.Fragment>
+                <Breadcrumb
+                    className='mb-3'
+                    items={[
+                    {
+                        href: '/',
+                        title: <HomeOutlined />,
+                    },
+                    {
+                        href: '/artesano',
+                        title: 'Mi taller',
+                    },
+                    {
+                        title: 'Administrar productos',
+                    },
+                    ]}
+                />
                 <Title level={3}> Productos </Title>
                 <Table columns={this.getColumns()} dataSource={this.state.data} loading={!this.state.isReady} />
                 <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} onClick={this.create} />

@@ -3,7 +3,9 @@ import React from 'react';
 function Home()
 {
     return (
-        <p>Hola</p>
+        <React.Fragment>
+            <p>Hola</p>
+        </React.Fragment>
     );
 }
 
