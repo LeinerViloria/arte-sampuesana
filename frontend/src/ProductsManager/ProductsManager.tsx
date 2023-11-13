@@ -23,7 +23,8 @@ interface IComponentProp {}
 interface IComponentState {
     data: IProduct[],
     isReady: boolean,
-    isModalVisible: boolean  // Nuevo estado para controlar la visibilidad de la modal
+    isModalVisible: boolean,
+    selectedItem: IProduct
 }
 
 class ProductsManager extends Component<IComponentProp, IComponentState>
@@ -34,7 +35,8 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         this.state = {
             data: [],
             isReady: false,
-            isModalVisible: false  // Inicializa el estado de la modal en falso
+            isModalVisible: false,
+            selectedItem: {} as IProduct
         }
     }
 
@@ -62,22 +64,18 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     delete(value: IProduct) {
-        // Lógica para eliminar
+        console.log(value);
     }
 
     create = () => {
-        // Abre la modal al hacer clic en el botón "Crear"
         this.setState({ isModalVisible: true });
     }
 
     handleModalOk = () => {
-        // Lógica cuando se hace clic en el botón "OK" de la modal
-        // Puedes agregar aquí la lógica específica para el método create
         this.setState({ isModalVisible: false });
     }
 
     handleModalCancel = () => {
-        // Lógica cuando se hace clic en el botón "Cancel" de la modal
         this.setState({ isModalVisible: false });
     }
 
@@ -99,7 +97,9 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} onClick={this.create} />
 
                 <Modal
-                    title="Título de la Modal"
+                    title={this.state.selectedItem.rowid == undefined ? 
+                        "Crear producto" :
+                        `Editar - ${this.state.selectedItem.name}`}
                     open={this.state.isModalVisible}
                     onOk={this.handleModalOk}
                     onCancel={this.handleModalCancel}
