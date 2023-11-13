@@ -28,8 +28,24 @@ const columns: ColumnsType<IProduct> =
     { title: 'Calificación', dataIndex: 'stars', key: '3' }
 ]
 
-class ProductsManager extends Component 
+interface IComponentProp {}
+
+interface IComponentState {
+    data: IProduct[],
+    isReady: boolean
+}
+
+class ProductsManager extends Component<IComponentProp, IComponentState>
 {
+    constructor(props: IComponentProp)
+    {
+        super(props);
+        this.state = {
+            data: [],
+            isReady: false
+        }
+    }
+
     componentDidMount() {
         axios.get('http://localhost:5084/Craftman/FirstWithProducts')
             .then(response => {
@@ -43,7 +59,7 @@ class ProductsManager extends Component
         return (
             <React.Fragment>
                 <Title level={3}> Productos </Title>
-                <Table columns={columns} />
+                <Table columns={columns} dataSource={this.state.data} />
             </React.Fragment>
         );
     }
