@@ -60,7 +60,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     edit(value: IProduct) {
-        console.log(value);
+        this.setState({selectedItem: value, isModalVisible: true});
     }
 
     delete(value: IProduct) {
