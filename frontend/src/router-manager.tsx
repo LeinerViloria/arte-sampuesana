@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import CraftsmenHome from "./CraftsmenHome/CraftsmenHome";
 import ErrorManager from './ErrorManager/ErrorManager';
 import CraftmanBasicInformation from './CraftmanBasicInformation/CraftmanBasicInformation';
+import ProductsManager from './ProductsManager/ProductsManager';
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
     {
       path: "/artesano/basicInformation",
       element: <CraftmanBasicInformation />,
+      errorElement: <ErrorManager />
+    },
+    {
+      path: "/artesano/productsManager",
+      element: <ProductsManager />,
       errorElement: <ErrorManager />
     }
 ]);
