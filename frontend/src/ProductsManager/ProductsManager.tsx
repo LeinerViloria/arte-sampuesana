@@ -89,11 +89,11 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     handleModalOk = () => {
-        this.setState({ isModalVisible: false });
+        this.setState({ isModalVisible: false, view: undefined });
     }
 
     handleModalCancel = () => {
-        this.setState({ isModalVisible: false });
+        this.setState({ isModalVisible: false, view: undefined });
     }
 
     componentDidMount() {
@@ -104,6 +104,20 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
             .catch(error => {
                 console.error('Error:', error);
             });
+    }
+
+    getModalTitle(): string
+    {
+        switch (this.state.view) {
+            case viewContext.detail:
+                return "";
+                break;
+            case viewContext.edit:
+                return `${this.state.selectedItem.name}`;
+                break;
+            default:
+                return "Crear producto";
+        }
     }
 
     render() {
@@ -130,9 +144,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} onClick={this.create} />
 
                 <Modal
-                    title={this.state.selectedItem.rowid == undefined ? 
-                        "Crear producto" :
-                        `Producto - ${this.state.selectedItem.name}`}
+                    title={this.getModalTitle()}
                     open={this.state.isModalVisible}
                     onOk={this.handleModalOk}
                     onCancel={this.handleModalCancel}
