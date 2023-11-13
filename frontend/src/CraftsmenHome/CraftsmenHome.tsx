@@ -1,4 +1,4 @@
-import { Button, Card, Col, Modal, QRCode, Row } from 'antd';
+import { Breadcrumb, Button, Card, Col, Modal, QRCode, Row } from 'antd';
 import React, { useState } from 'react';
 import './CraftsmenHome.tsx.css';
 import CraftsmenMainDashlet from './CraftsmenMainDashlet/CraftsmenMainDashlet';
@@ -6,6 +6,9 @@ import PersonalInformationDashlet from './PersonalInformationDashlet/PersonalInf
 import Title from 'antd/es/typography/Title';
 import ProductsDashlet from './ProductsDashlet/ProductsDashlet';
 import axios from 'axios';
+import {
+    HomeOutlined
+} from '@ant-design/icons';
 
 function CraftsmenHome()
 {
@@ -47,6 +50,18 @@ function CraftsmenHome()
     };
     return (
         <React.Fragment>
+            <Breadcrumb
+                className='mb-3'
+                items={[
+                {
+                    href: '/',
+                    title: <HomeOutlined />,
+                },
+                {
+                    title: 'Mi taller',
+                },
+                ]}
+            />
             <Row gutter={[24, 16]}>
                 <Col span={16} className='max_height_card'>
                     <Card className='h-100' bordered={false}>
