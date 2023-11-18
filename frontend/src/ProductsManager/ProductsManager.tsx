@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, FloatButton, Form, Input, InputNumber, Modal, Popconfirm } from 'antd';
+import { Breadcrumb, Button, FloatButton, Form, Input, InputNumber, Modal, Popconfirm, message } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
@@ -17,7 +17,8 @@ interface IProduct
     price: number,
     image: string,
     stars: number,
-    culturalInformation: string
+    culturalInformation: string,
+    rowidBusiness: number
 }
 
 interface IComponentProp {}
@@ -90,7 +91,14 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
 
     handleModalOk = (value: IProduct) => {
         console.log(value);
-        this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
+        axios.put('http://localhost:5084/Product/', value)
+        .then(response => {
+            message.success("Se guardó con éxito");
+            this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
+        }).catch(error => {
+            console.error(error);
+            message.error("Ocurrió un error");
+        });
     }
 
     handleModalCancel = () => {
@@ -162,6 +170,14 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                                 initialValues={this.state.selectedItem}
                                 onFinish={this.handleModalOk}
                                 >
+                                <Form.Item
+                                    name="rowid"
+                                    hidden={true}
+                                />
+                                <Form.Item
+                                    name="rowidBusiness"
+                                    hidden={true}
+                                />
                                 <Form.Item
                                     label="Nombre"
                                     name="name"
