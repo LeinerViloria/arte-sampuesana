@@ -1,4 +1,4 @@
-import { Breadcrumb, FloatButton, Modal, Popconfirm } from 'antd';
+import { Breadcrumb, Button, FloatButton, Form, Input, InputNumber, Modal, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
@@ -154,7 +154,44 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                     {
                         this.state.view == viewContext.detail ?
                         <ProductItem product={this.state.selectedItem} width={330} /> :
-                        <p>Contenido de la modal</p>
+                        <React.Fragment>
+                            <Form
+                            name="productForm"
+                            initialValues={this.state.selectedItem}
+                            >
+                            <Form.Item
+                                label="Nombre"
+                                name="name"
+                                rules={[{ required: true, message: 'Por favor ingresa el nombre del producto' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Precio"
+                                name="price"
+                                rules={[{ required: true, type: 'number', min: 0, message: 'Por favor ingresa un precio válido' }]}
+                            >
+                                <InputNumber min={0} step={0.01} />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Imagen (URL)"
+                                name="image"
+                                rules={[{ required: true, message: 'Por favor ingresa la URL de la imagen' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Información Cultural"
+                                name="culturalInfo"
+                                rules={[{ required: true, message: 'Por favor ingresa la información cultural' }]}
+                            >
+                                <Input.TextArea rows={4} />
+                            </Form.Item>
+                            </Form>
+                        </React.Fragment>
                     }
                 </Modal>
             </React.Fragment>
