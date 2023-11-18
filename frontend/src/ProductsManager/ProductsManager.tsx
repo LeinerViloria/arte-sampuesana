@@ -73,12 +73,10 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     edit(value: IProduct) {
-        console.log(value);
         this.setState({selectedItem: value, isModalVisible: true, view: viewContext.edit});
     }
 
     detail(value: IProduct) {
-        console.log(value);
         this.setState({selectedItem: value, isModalVisible: true, view: viewContext.detail});
     }
 
@@ -91,6 +89,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     handleModalOk = () => {
+        console.log(this.state.selectedItem);
         this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
     }
 
