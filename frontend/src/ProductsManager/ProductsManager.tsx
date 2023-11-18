@@ -82,7 +82,18 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     delete(value: IProduct) {
-        console.log(value);
+        axios.delete(`http://localhost:5084/Product/`,{
+            params: {
+              rowid: value.rowid
+            }
+          })
+        .then(response => {
+            message.success("Se eliminó con éxito");
+            this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
+        }).catch(error => {
+            console.error(error);
+            message.error("Ocurrió un error");
+        });
     }
 
     create = () => {
