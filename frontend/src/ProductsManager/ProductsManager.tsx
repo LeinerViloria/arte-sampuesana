@@ -89,6 +89,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
           })
         .then(response => {
             message.success("Se eliminó con éxito");
+            this.loadData();
             this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
         }).catch(error => {
             console.error(error);
@@ -112,6 +113,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 axios.post('http://localhost:5084/Product/', value)
                 .then(response2 => {
                     message.success("Se guardó con éxito");
+                    this.loadData();
                     this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
                 }).catch(error => {
                     console.error(error);
@@ -126,6 +128,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
             axios.put('http://localhost:5084/Product/', value)
             .then(response => {
                 message.success("Se guardó con éxito");
+                this.loadData();
                 this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
             }).catch(error => {
                 console.error(error);
@@ -139,6 +142,10 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = () =>{
         axios.get('http://localhost:5084/Craftman/FirstWithProducts')
             .then(response => {
                 this.setState({ data: response.data.business.products, isReady: true });
