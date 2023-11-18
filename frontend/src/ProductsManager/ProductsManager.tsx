@@ -90,15 +90,37 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     handleModalOk = (value: IProduct) => {
-        console.log(value);
-        axios.put('http://localhost:5084/Product/', value)
-        .then(response => {
-            message.success("Se guardó con éxito");
-            this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
-        }).catch(error => {
-            console.error(error);
-            message.error("Ocurrió un error");
-        });
+        if(value.rowid == undefined)
+        {
+            value.stars = Math.floor(Math.random() * 5) + 1;
+
+            axios.get('http://localhost:5084/Craftman/First')
+            .then(response => {
+                value.rowidBusiness = response.data.business.rowid;
+
+                axios.post('http://localhost:5084/Product/', value)
+                .then(response2 => {
+                    message.success("Se guardó con éxito");
+                    this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
+                }).catch(error => {
+                    console.error(error);
+                    message.error("Ocurrió un error");
+                });
+            }).catch(error => {
+                console.error(error);
+                message.error("Ocurrió un error");
+            });
+        }else
+        {
+            axios.put('http://localhost:5084/Product/', value)
+            .then(response => {
+                message.success("Se guardó con éxito");
+                this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
+            }).catch(error => {
+                console.error(error);
+                message.error("Ocurrió un error");
+            });
+        }
     }
 
     handleModalCancel = () => {
@@ -176,6 +198,10 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                                 />
                                 <Form.Item
                                     name="rowidBusiness"
+                                    hidden={true}
+                                />
+                                <Form.Item
+                                    name="stars"
                                     hidden={true}
                                 />
                                 <Form.Item

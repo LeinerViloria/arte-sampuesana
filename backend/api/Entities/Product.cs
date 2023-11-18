@@ -21,7 +21,7 @@ public class Product : EntityBase
     public decimal Stars { get; set; }
     
     [StringLength(2000)]
-    public string CulturalInformation { get; set; }
+    public string? CulturalInformation { get; set; }
 
     [Required]
     [ForeignKey("Business")]
