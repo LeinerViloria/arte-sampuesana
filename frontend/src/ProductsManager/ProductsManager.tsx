@@ -73,10 +73,12 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     edit(value: IProduct) {
+        console.log(value);
         this.setState({selectedItem: value, isModalVisible: true, view: viewContext.edit});
     }
 
     detail(value: IProduct) {
+        console.log(value);
         this.setState({selectedItem: value, isModalVisible: true, view: viewContext.detail});
     }
 
@@ -85,15 +87,15 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     create = () => {
-        this.setState({ isModalVisible: true });
+        this.setState({ isModalVisible: true, view: undefined, selectedItem: {} as IProduct });
     }
 
     handleModalOk = () => {
-        this.setState({ isModalVisible: false, view: undefined });
+        this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
     }
 
     handleModalCancel = () => {
-        this.setState({ isModalVisible: false, view: undefined });
+        this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
     }
 
     componentDidMount() {
@@ -111,10 +113,8 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         switch (this.state.view) {
             case viewContext.detail:
                 return "";
-                break;
             case viewContext.edit:
                 return `${this.state.selectedItem.name}`;
-                break;
             default:
                 return "Crear producto";
         }
@@ -143,57 +143,62 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                 <Table columns={this.getColumns()} dataSource={this.state.data} loading={!this.state.isReady} />
                 <FloatButton tooltip={<div>Crear</div>} icon={<PlusCircleFilled />} onClick={this.create} />
 
-                <Modal
-                    title={this.getModalTitle()}
-                    open={this.state.isModalVisible}
-                    onOk={this.handleModalOk}
-                    onCancel={this.handleModalCancel}
-                    okText={this.state.view == viewContext.detail ? "Editar" : "Guardar"}
-                    cancelText="Cerrar"
-                >
-                    {
-                        this.state.view == viewContext.detail ?
-                        <ProductItem product={this.state.selectedItem} width={330} /> :
-                        <React.Fragment>
-                            <Form
-                            name="productForm"
-                            initialValues={this.state.selectedItem}
-                            >
-                            <Form.Item
-                                label="Nombre"
-                                name="name"
-                                rules={[{ required: true, message: 'Por favor ingresa el nombre del producto' }]}
-                            >
-                                <Input />
-                            </Form.Item>
+                {/* Este condicional sale con la intención de controlar el refrezco de lo que se visualiza en el formulario */}
+                {
+                    this.state.isModalVisible ?
+                    <Modal
+                        title={this.getModalTitle()}
+                        open={this.state.isModalVisible}
+                        onOk={this.handleModalOk}
+                        onCancel={this.handleModalCancel}
+                        okText={this.state.view == viewContext.detail ? "Editar" : "Guardar"}
+                        cancelText="Cerrar"
+                    >
+                        {
+                            this.state.view == viewContext.detail ?
+                            <ProductItem product={this.state.selectedItem} width={330} /> :
+                            <React.Fragment>
+                                <Form
+                                name="productForm"
+                                initialValues={this.state.selectedItem}
+                                >
+                                <Form.Item
+                                    label="Nombre"
+                                    name="name"
+                                    rules={[{ required: true, message: 'Por favor ingresa el nombre del producto' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
 
-                            <Form.Item
-                                label="Precio"
-                                name="price"
-                                rules={[{ required: true, type: 'number', min: 0, message: 'Por favor ingresa un precio válido' }]}
-                            >
-                                <InputNumber min={0} step={0.01} />
-                            </Form.Item>
+                                <Form.Item
+                                    label="Precio"
+                                    name="price"
+                                    rules={[{ required: true, type: 'number', min: 0, message: 'Por favor ingresa un precio válido' }]}
+                                >
+                                    <InputNumber min={0} step={0.01} />
+                                </Form.Item>
 
-                            <Form.Item
-                                label="Imagen (URL)"
-                                name="image"
-                                rules={[{ required: true, message: 'Por favor ingresa la URL de la imagen' }]}
-                            >
-                                <Input />
-                            </Form.Item>
+                                <Form.Item
+                                    label="Imagen (URL)"
+                                    name="image"
+                                    rules={[{ required: true, message: 'Por favor ingresa la URL de la imagen' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
 
-                            <Form.Item
-                                label="Información Cultural"
-                                name="culturalInfo"
-                                rules={[{ required: true, message: 'Por favor ingresa la información cultural' }]}
-                            >
-                                <Input.TextArea rows={4} />
-                            </Form.Item>
-                            </Form>
-                        </React.Fragment>
-                    }
-                </Modal>
+                                <Form.Item
+                                    label="Información Cultural"
+                                    name="culturalInformation"
+                                    rules={[{ required: true, message: 'Por favor ingresa la información cultural' }]}
+                                >
+                                    <Input.TextArea rows={4} />
+                                </Form.Item>
+                                </Form>
+                            </React.Fragment>
+                        }
+                    </Modal> :
+                    <React.Fragment></React.Fragment>
+                }
             </React.Fragment>
         );
     }
