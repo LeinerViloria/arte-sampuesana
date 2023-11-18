@@ -88,8 +88,8 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         this.setState({ isModalVisible: true, view: undefined, selectedItem: {} as IProduct });
     }
 
-    handleModalOk = () => {
-        console.log(this.state.selectedItem);
+    handleModalOk = (value: IProduct) => {
+        console.log(value);
         this.setState({ isModalVisible: false, view: undefined, selectedItem: {} as IProduct });
     }
 
@@ -148,18 +148,19 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                     <Modal
                         title={this.getModalTitle()}
                         open={this.state.isModalVisible}
-                        onOk={this.handleModalOk}
-                        onCancel={this.handleModalCancel}
                         okText={this.state.view == viewContext.detail ? "Editar" : "Guardar"}
                         cancelText="Cerrar"
+                        okButtonProps={{hidden: true}}
+                        cancelButtonProps={{hidden: true}}
                     >
                         {
-                            this.state.view == viewContext.detail ?
+                            this.state.view === viewContext.detail ?
                             <ProductItem product={this.state.selectedItem} width={330} /> :
                             <React.Fragment>
                                 <Form
                                 name="productForm"
                                 initialValues={this.state.selectedItem}
+                                onFinish={this.handleModalOk}
                                 >
                                 <Form.Item
                                     label="Nombre"
@@ -188,9 +189,18 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                                 <Form.Item
                                     label="Información Cultural"
                                     name="culturalInformation"
-                                    rules={[{ required: true, message: 'Por favor ingresa la información cultural' }]}
+                                    rules={[{ message: 'Por favor ingresa la información cultural' }]}
                                 >
                                     <Input.TextArea rows={4} />
+                                </Form.Item>
+
+                                <Form.Item className='d-flex w-100 flex-row-reverse'>
+                                    <Button type="default" htmlType="button" className='m-2' onClick={this.handleModalCancel}>
+                                        Cerrar
+                                    </Button>
+                                    <Button type="primary" htmlType="submit" className='m-2'>
+                                        Guardar
+                                    </Button>
                                 </Form.Item>
                                 </Form>
                             </React.Fragment>
