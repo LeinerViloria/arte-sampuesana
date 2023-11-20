@@ -3,7 +3,7 @@ class ApiManager
     private baseUrl: string;
 
     constructor() {
-        this.baseUrl = "http://localhost:5084";
+        this.baseUrl = "http://localhost:5000";
     }
 
     public async get(endpoint: string): Promise<any> {

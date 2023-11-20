@@ -14,7 +14,7 @@ interface IComponentState{
 let Data:any;
 let component : any;
 
-axios.get('http://localhost:5084/Craftman/First')
+axios.get('http://localhost:5000/Craftman/First')
 .then(response => {
     Data = response.data;
     component.updatePercentage();
@@ -36,7 +36,7 @@ class PersonalInformationDashlet extends Component<IComponentProp, IComponentSta
 
     updatePercentage()
     {
-        axios.get(`http://localhost:5084/Craftman/Percentage/${Data.rowid}`)
+        axios.get(`http://localhost:5000/Craftman/Percentage/${Data.rowid}`)
         .then(percentageRes => {
             let value: number = percentageRes.data;
             console.log(value);

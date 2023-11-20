@@ -25,7 +25,7 @@ class NavBar extends Component {
                             }}>
                                 <div className="navbar-nav mr-auto py-0">
                                     <a href="/" className="nav-item nav-link">Home</a>
-                                    <a href="/artesano" className="nav-item nav-link">Mi taller</a>
+                                    <a href="/artesano" className="nav-item nav-link">Gestión del negocio</a>
                                 </div>
 
                                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">

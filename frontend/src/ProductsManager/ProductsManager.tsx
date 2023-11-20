@@ -82,7 +82,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     delete(value: IProduct) {
-        axios.delete(`http://localhost:5084/Product/`,{
+        axios.delete(`http://localhost:5000/Product/`,{
             params: {
               rowid: value.rowid
             }
@@ -106,11 +106,11 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
         {
             value.stars = Math.floor(Math.random() * 5) + 1;
 
-            axios.get('http://localhost:5084/Craftman/First')
+            axios.get('http://localhost:5000/Craftman/First')
             .then(response => {
                 value.rowidBusiness = response.data.business.rowid;
 
-                axios.post('http://localhost:5084/Product/', value)
+                axios.post('http://localhost:5000/Product/', value)
                 .then(response2 => {
                     message.success("Se guardó con éxito");
                     this.loadData();
@@ -125,7 +125,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
             });
         }else
         {
-            axios.put('http://localhost:5084/Product/', value)
+            axios.put('http://localhost:5000/Product/', value)
             .then(response => {
                 message.success("Se guardó con éxito");
                 this.loadData();
@@ -146,7 +146,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
     }
 
     loadData = () =>{
-        axios.get('http://localhost:5084/Craftman/FirstWithProducts')
+        axios.get('http://localhost:5000/Craftman/FirstWithProducts')
             .then(response => {
                 this.setState({ data: response.data.business.products, isReady: true });
             })
@@ -179,7 +179,7 @@ class ProductsManager extends Component<IComponentProp, IComponentState>
                     },
                     {
                         href: '/artesano',
-                        title: 'Mi taller',
+                        title: 'Gestión del negocio',
                     },
                     {
                         title: 'Administrar productos',

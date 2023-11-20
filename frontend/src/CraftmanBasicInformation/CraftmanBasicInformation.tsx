@@ -47,7 +47,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5084/Craftman/First')
+        axios.get('http://localhost:5000/Craftman/First')
             .then(response => {
                 this.setState({ currentValues: response.data, business: response.data.business, isReady: true });
             })
@@ -59,7 +59,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     onFinish(value: FieldType)
     {
         console.log(value);
-        axios.put('http://localhost:5084/Craftman/', value)
+        axios.put('http://localhost:5000/Craftman/', value)
             .then(response => {
                 message.success("Se guardó con éxito");
             }).catch(error => {
@@ -71,7 +71,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
     onBusinessFinish(value: BusinessType)
     {
         console.log(value);
-        axios.put('http://localhost:5084/CraftmanBusiness/', value)
+        axios.put('http://localhost:5000/CraftmanBusiness/', value)
             .then(response => {
                 message.success("Se guardó con éxito");
             }).catch(error => {
@@ -106,7 +106,7 @@ class CraftmanBasicInformation extends Component<IComponentProp, IComponentState
                     },
                     {
                         href: '/artesano',
-                        title: 'Mi taller',
+                        title: 'Gestión del negocio',
                     },
                     {
                         title: 'Administrar información personal',

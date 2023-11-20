@@ -16,7 +16,7 @@ function CraftsmenHome()
     const [business, setBusiness] = useState<any | null>(null);
     const [isReady, setIsReady] = useState(false);
 
-    axios.get('http://localhost:5084/Craftman/First')
+    axios.get('http://localhost:5000/Craftman/First')
     .then(response => {
         setBusiness(response.data.business);
         setIsReady(true);
@@ -58,7 +58,7 @@ function CraftsmenHome()
                     title: <HomeOutlined />,
                 },
                 {
-                    title: 'Mi taller',
+                    title: 'Gestión del negocio',
                 },
                 ]}
             />
